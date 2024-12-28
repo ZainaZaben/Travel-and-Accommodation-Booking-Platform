@@ -1,0 +1,28 @@
+/* PageNotFound.module.css */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: grid;
+}
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: grey.700;
+}
+
+.contentWrapper {
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 20px;
+}

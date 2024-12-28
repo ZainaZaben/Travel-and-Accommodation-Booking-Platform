@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: grid;
+} 
+
+.login-root {
+  padding: 2;
+  position: relative;
+  background-color: white !important;
+  border-radius: 5px;
+}
+
+.login {
+  background-color: rgb(245, 245, 245);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(5,151,191,255);
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .grid {
+    display: block;
+  }
+  .login-image {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .login-image {
+    display: block;
+  }
+}
