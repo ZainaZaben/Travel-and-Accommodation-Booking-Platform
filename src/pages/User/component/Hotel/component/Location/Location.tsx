@@ -1,48 +1,46 @@
-import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { Paper } from "@mui/material";
+import React from "react";
+import './styles.css';
+import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-import "./styles.css";
-
-interface MapProps {
+interface HotelMapLocationProps {
   latitude: number;
   longitude: number;
   hotelName: string;
+  location: string;
 }
 
-const SetView: React.FC<{ center: [number, number]; zoom: number }> = ({
-  center,
-  zoom,
-}) => {
-  const map = useMap();
-  useEffect(() => {
-    map.setView(center, zoom);
-  }, [map, center, zoom]);
-  return null;
-};
-
-const MapComponent: React.FC<MapProps> = ({
+const HotelMapLocation: React.FC<HotelMapLocationProps> = ({
   latitude,
   longitude,
   hotelName,
+  location,
 }) => {
+  const position: [number, number] = [latitude, longitude];
+
   return (
-    <Paper>
+    <div className="mapContainer">
+      <h3>See on map:</h3>
       <MapContainer
+        center={position}
         zoom={13}
         scrollWheelZoom={false}
-        style={{ height: "626px", width: "100%", padding: ".5rem" }}
+        style={{ width: "100%", height: "600px" }}
       >
-        <SetView center={[latitude, longitude]} zoom={13} />
         <TileLayer
-          url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=LFVSscM1KK8Mz1ygaH8t"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker position={[latitude, longitude]}>
-          <Popup>{hotelName}</Popup>
+        <Marker position={position}>
+          <Popup>
+            <strong>{hotelName}</strong>
+            <br />
+            {location}
+          </Popup>
         </Marker>
       </MapContainer>
-    </Paper>
+    </div>
   );
 };
 
-export default MapComponent;
+export default HotelMapLocation;

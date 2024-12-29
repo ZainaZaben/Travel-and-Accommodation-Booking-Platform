@@ -1,0 +1,27 @@
+.resultList {
+    flex: 3;
+}
+
+.noHotelsMessage {
+    color: red;
+    font-style: italic;
+}
+
+.loader {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    margin: 1rem;
+}
+
+@media screen and (max-width: 768px) and (max-width: 1200px){
+    .loader {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 1rem;
+    }
+}

@@ -1,27 +1,49 @@
 import { Paper } from "@mui/material";
 import React from "react";
 import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 import usePictureGallery from "./hooks/useGetPictureGallry";
-import CardItem from "./component/CardItem";
 import Loader from "@/container/Loader";
-interface pictureProps {
+
+interface PictureProps {
   id: string | undefined;
 }
-const PictrueGallery: React.FC<pictureProps> = ({ id }) => {
+
+const PictureGallery: React.FC<PictureProps> = ({ id }) => {
   const { data, isLoading } = usePictureGallery(id);
+
   if (isLoading) return <Loader />;
+
   return (
     <Paper>
       {data ? (
         <ImageList
           sx={{
-            height: "609px",
-            transform: "translateZ(0)",
+            width: "100%",
+            height: "auto",
+            overflow: "hidden",
           }}
-          rowHeight={302}
+          cols={3}
+          gap={8} 
         >
-          {data?.map((item, indx) =>
-            indx === 0 ? null: <CardItem key={indx} url={item.url} />
+          {data.map((item, indx) =>
+            indx === 0 ? null : (
+              <ImageListItem
+                key={indx}
+              >
+                <img
+                  src={item.url}
+                  alt={`Image ${indx}`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "4px", 
+                  }}
+                  loading="lazy"
+                />
+              </ImageListItem>
+            )
           )}
         </ImageList>
       ) : null}
@@ -29,4 +51,4 @@ const PictrueGallery: React.FC<pictureProps> = ({ id }) => {
   );
 };
 
-export default PictrueGallery;
+export default PictureGallery;

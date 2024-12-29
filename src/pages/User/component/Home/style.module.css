@@ -1,7 +1,13 @@
 .container {
     margin: 0 auto;
     padding: 2rem;
+    padding-top: 60px;
     max-width: 1200px;
+}
+
+.searchBar {
+    padding-top: 20px;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {

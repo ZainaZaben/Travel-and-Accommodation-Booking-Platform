@@ -10,7 +10,8 @@ import { Button, CardActions, Divider, IconButton } from "@mui/material";
 import { RemoveCircleOutline } from "@mui/icons-material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { roomType } from "../types";
-import  "../styles.css";
+import "../styles.css";
+import { Baby, UsersRound } from "lucide-react";
 export interface roomTypeProps {
   roomDetails: roomType;
   handleQuantityInc: (index: number) => void;
@@ -50,7 +51,15 @@ const RoomCard: React.FC<roomTypeProps> = ({
             Room {roomNumber} - {roomType}
           </Typography>
           <Typography color="textSecondary">
-            Capacity: {capacityOfAdults} Adults, {capacityOfChildren} Children
+            <Baby style={{ fontSize: "10px", marginRight: "8px" }} />
+            <span style={{ fontSize: "20px"}}>{capacityOfAdults}</span>,
+            <UsersRound
+              style={{
+                fontSize: "10px",
+                marginRight: "8px",
+                marginLeft: "10px",
+              }}
+            /><span style={{ fontSize: "20px"}}>{capacityOfChildren}</span>
           </Typography>
           <Typography color="textSecondary">
             Price: ${price} per night

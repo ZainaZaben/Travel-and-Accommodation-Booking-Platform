@@ -38,14 +38,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
       anchor="left"
       open={isMobileOpened}
       onClose={handleDrawerToggle}
-      sx={{
-        "& .MuiDrawer-paper": {
-          width: "240px",
-          borderTopRightRadius: "16px",
-          borderBottomRightRadius: "16px",
-          boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)",
-        },
-      }}
+      sx={{ "& .MuiDrawer-paper": { width: "240px" } }}
     >
       <Box>
         <Typography variant="h6" sx={{ my: 2, textAlign: "center" }}>
@@ -76,3 +69,5 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
 };
 
 export default DrawerComponent;
+
+

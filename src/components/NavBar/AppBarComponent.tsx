@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { AppBar, Badge, Button, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  ImageListItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import {
   ShoppingCart as ShoppingCartIcon,
   Home as HomeIcon,
@@ -11,7 +19,7 @@ import { addToCart } from "@/features/cartSlice";
 import { logOut } from "@/features/authSlice";
 import colors from "@/constant/colorConstants";
 import ButtonLink from "./ButtonLink";
-
+import logo from "@/assets/whiteLogo.png";
 const AppBarComponent: React.FC = () => {
   const dispatch = useDispatch();
   const cart = () => dispatch(addToCart());
@@ -30,24 +38,40 @@ const AppBarComponent: React.FC = () => {
           paddingX: { sm: "3rem", md: "3rem", lg: "6rem" },
         }}
       >
-        <Typography
-          variant="h6"
-          component={Link}
-          to="/"
-          color="inherit"
+        <Box
           sx={{
-            textDecoration: "none",
-            fontSize: "1.5rem",
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
           }}
         >
-          Musafir
-        </Typography>
+          <ImageListItem sx={{ display: { xs: "none", md: "block" } }}>
+            <img
+              src={logo}
+              style={{ height: 40, width: 40, borderRadius: "50%" }}
+              alt="logo"
+            />
+          </ImageListItem>
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            color="inherit"
+            sx={{
+              marginTop: "10px",
+              textDecoration: "none",
+              fontSize: "1.8rem",
+            }}
+          >
+            Musafir
+          </Typography>
+        </Box>
 
         <div>
           <ButtonLink to="/" icon={<HomeIcon />} text="Home" />
           <ButtonLink to="/search" icon={<SearchIcon />} text="Search" />
           <ButtonLink
-            to="/cart"
+            to="/order"
             icon={
               <Badge badgeContent={cart.length} color="error">
                 <ShoppingCartIcon />

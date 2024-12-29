@@ -5,3 +5,7 @@ export interface Response extends BaseResponse {
   rating: number;
   description: string;
 }
+export interface Response extends BaseResponse {
+ name:string,
+ description:string
+}

@@ -1,4 +1,4 @@
-.heroSearchText {
+.IntroSearchText {
     font-size: 1rem;
     color: black;
     cursor: pointer;
@@ -9,7 +9,7 @@
     background-color: transparent;
 }
 
-.heroIcon {
+.IntroIcon {
     color: var(--main-color);
     margin-right: 5px;
 }

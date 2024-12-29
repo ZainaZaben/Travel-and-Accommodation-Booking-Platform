@@ -42,10 +42,10 @@ const DateCheck: React.FC<DateCheckProps> = ({ handleSetDate, isDateOpened, togg
     <>
       <Button
         type="button"
-        className={styles.heroSearchText}
+        className={styles.IntroSearchText}
         onClick={toggleDate}
       >
-        <DateRangeIcon className={styles.heroIcon} />
+        <DateRangeIcon className={styles.IntroIcon} />
         <span>
           {`${dayjs(date[0].startDate).format("YYYY-MM-DD")} - ${dayjs(
             date[0].endDate

@@ -5,6 +5,7 @@ import {
   Toolbar,
   Badge,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import React from "react";
@@ -17,6 +18,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { logOut } from "../../features/authSlice";
 import { UserRole } from "../../constant/auth";
 import { useNavigate } from "react-router-dom";
+import logo from "@/assets/whiteLogo.png";
+import colors from "@/constant/colorConstants";
 
 const AppBarMUI: React.FC = () => {
   const { open } = useAppSelector((state) => state.open);
@@ -35,7 +38,12 @@ const AppBarMUI: React.FC = () => {
   };
   return (
     <>
-      <AppBar position="fixed">
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: colors.primaryColor,
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -59,22 +67,23 @@ const AppBarMUI: React.FC = () => {
             >
               <ImageListItem sx={{ display: { xs: "none", md: "block" } }}>
                 <img
-                  src="/assets/logo.png"
-                  style={{ height: 56, width: 56, borderRadius: "50%" }}
+                  src={logo}
+                  style={{ height: 30, width: 30, borderRadius: "50%" }}
                   alt="logo"
                 />
               </ImageListItem>
-              <ImageListItem sx={{ maxHeight: "70px", maxWidth: "300px" }}>
-                <img
-                  src="/assets/logo-text.png"
-                  style={{
-                    filter: `brightness(0) invert(1)`,
-                    height: "100% !important",
-                    width: "100% !important",
-                  }}
-                  alt="logo"
-                />
-              </ImageListItem>
+              <Typography
+                variant="h6"
+                sx={{
+                  my: 2,
+                  textAlign: "center",
+                  marginTop: "20px",
+                  textDecoration: "none",
+                  fontSize: "1.6rem",
+                }}
+              >
+                Musafir
+              </Typography>
             </Box>
           </Box>
           {userType === UserRole.User && (
@@ -88,6 +97,9 @@ const AppBarMUI: React.FC = () => {
             <Tooltip title="Logout">
               <IconButton sx={{ color: "white" }} onClick={handleLogout}>
                 <ExitToAppIcon />
+                <Typography sx={{ textAlign: "right" }} onClick={handleLogout}>
+                  LOGOUT
+                </Typography>
               </IconButton>
             </Tooltip>
           )}

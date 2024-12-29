@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useGetHotel from "./hooks/useGetHotel";
 import Lottie from "lottie-react";
@@ -8,6 +8,7 @@ import Location from "./component/Location";
 import Details from "./component/Details";
 import PictureGallery from "./component/PictureGallery";
 import AvailbleRooms from "./component/AvailbleRooms";
+import NavBar from "@/components/NavBar";
 
 const MyLayout: React.FC = () => {
   const { id } = useParams();
@@ -21,6 +22,9 @@ const MyLayout: React.FC = () => {
     );
   return (
     <>
+    <NavBar />
+     <Container sx={{ py: 10, mt: -5 }}>
+      
       {data ? (
         <Grid container spacing={2}>
           <Grid container item spacing={2}>
@@ -38,21 +42,23 @@ const MyLayout: React.FC = () => {
               <PictureGallery id={id} />
             </Grid>
           </Grid>
-          <Grid container item spacing={2}>
+          <Grid container item mt={2} spacing={2}>
             <Grid item xs={12} md={3}>
               <Location
-                hotelName={data.hotelName}
-                latitude={data.latitude}
-                longitude={data.longitude}
-              />
+                  hotelName={data.hotelName}
+                  latitude={data.latitude}
+                  longitude={data.longitude} 
+                  location={data.location}              
+                  />
             </Grid>
-
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} md={9} spacing={2}>
+            <h3 >Available Rooms</h3>
               <AvailbleRooms id={id} />
             </Grid>
           </Grid>
         </Grid>
       ) : null}
+      </Container>
     </>
   );
 };

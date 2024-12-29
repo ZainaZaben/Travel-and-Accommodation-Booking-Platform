@@ -3,6 +3,12 @@ import { Box, Typography, Paper, Rating, Divider } from "@mui/material";
 import CustomerFeedback from "./FeedBack";
 import useGetGuestReviews from "./hooks/useGetReviews";
 import Loader from "@/container/Loader";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import styles from "./style.module.css";
+import useGetAmenities from "./hooks/useGetAmenitties";
+
 interface HotelInfoProps {
   name: string;
   starRating: number;
@@ -18,15 +24,19 @@ const HotelInfo: React.FC<HotelInfoProps> = ({
   city,
   id,
 }) => {
-  const { data } = useGetGuestReviews(id);
+  const { data: reviewData } = useGetGuestReviews(id);
+  const { data: amenities, isLoading: amenitiesLoading } = useGetAmenities();
+
   return (
     <Paper
       elevation={3}
       sx={{
         padding: "20px",
-        height: "609px",
+        height: "775px",
         overflow: "scroll",
         overflowX: "hidden",
+        border: "2px solid",
+        borderColor: "white",
       }}
     >
       <Typography variant="h6" gutterBottom>
@@ -39,14 +49,34 @@ const HotelInfo: React.FC<HotelInfoProps> = ({
         </Typography>
       </Box>
       <Typography my={2} variant="body1">
+        <FontAwesomeIcon icon={faLocationPin} style={{ marginRight: "8px" }} />
         {city}
       </Typography>
+
+      {/* Amenities Section */}
+      <div className={styles.hotelAmenities}>
+        <h3>Amenities</h3>
+        {amenitiesLoading ? (
+          <Loader />
+        ) : (
+          <ul>
+            {amenities?.map((amenity, index) => (
+              <li key={index} className={styles.amenityItem}>
+                <CheckCircleIcon sx={{ color: "green" }} />
+                {amenity.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Guest Reviews Section */}
       <Typography variant="h6" align="center" gutterBottom>
         Guest-Reviews
       </Typography>
       <Divider />
-      {data ? (
-        data.map((item) => (
+      {reviewData ? (
+        reviewData.map((item) => (
           <CustomerFeedback
             key={item.reviewId}
             customerName={item.customerName}

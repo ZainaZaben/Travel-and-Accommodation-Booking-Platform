@@ -32,10 +32,8 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
 
   const navigate = useNavigate();
 
-  // Fetch hotel details using the useGetHotel hook
   const { data, isLoading, error } = useGetHotel(hotelId.toString());
 
-  // Handle the click to navigate to the hotel details page
   const handleDealClick = () => {
     if (!isLoading && data) {
       navigate(`/hotel/${hotelId}`);

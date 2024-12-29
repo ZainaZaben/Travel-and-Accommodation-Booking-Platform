@@ -29,9 +29,6 @@ const NavBar: React.FC = () => {
             component="nav"
             sx={{
               backgroundColor: colors.primaryColor,
-              borderBottomLeftRadius: "16px",
-              borderBottomRightRadius: "16px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
             }}
           >
             <IconButton
