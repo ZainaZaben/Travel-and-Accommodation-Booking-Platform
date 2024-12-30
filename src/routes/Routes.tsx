@@ -18,6 +18,8 @@ const Hotel = lazy(() => import("../pages/User/component/Hotel"));
 
 const Home = lazy(() => import("../pages/User/component/Home"));
 const SearchPage = lazy(() => import("../pages/User/component/SearchPage"));
+const Confirmation = lazy(() => import("../pages/User/component/Confirmation"));
+
 const AppRoutes: FC = () => {
   const { User, Admin } = UserRole;
   return (
@@ -31,6 +33,7 @@ const AppRoutes: FC = () => {
           <Route path="search" element={<SearchPage />} />
           <Route path="hotel/:id" element={<Hotel />} />
           <Route path="order" element={<Order />} />
+          <Route path="confirmation" element={<Confirmation />} />
         </Route>
         <Route element={<AppLayout />}>
           <Route element={<ProtectedRoute allowedRoles={[Admin]} />}>

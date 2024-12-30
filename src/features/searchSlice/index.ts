@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { dataTypes, filter } from "@/pages/User/types";
+import { dataTypes, Filter, HotelType } from "@/pages/User/types";
 import { extractDate, extractTomorowDate } from "@/utilties/extractDate";
-import { roomType } from "@/pages/User/component/SearchPage/component/SearchBar/types";
+// import { roomType } from "@/pages/User/component/SearchPage/component/SearchBar/types";
 // import { propsType } from "@/pages/User/component/SearchPage/types";
 
 interface SearchState {
   data: dataTypes | null;
-  searchData: filter | null;
-  // hotelData: propsType[]| null;
-  rooms: roomType[] | null;
+  searchData: Filter | null;
+  hotelData: HotelType[]| null;
+  // rooms: roomType[] | null;
 }
 
 const initialState: SearchState = {
@@ -23,10 +23,10 @@ const initialState: SearchState = {
   searchData: {
     priceRange: [0, 10000],
     starRating: 0,
-    amenities: "",
+    amenities: null,
     roomType: "Luxury",
   },
-  rooms: undefined,
+  hotelData: undefined,
 };
 
 const searchSlice = createSlice({
@@ -36,11 +36,11 @@ const searchSlice = createSlice({
     setData(state, action: PayloadAction<dataTypes | null>) {
       state.data = action.payload;
     },
-    setSearchData(state, action: PayloadAction<filter | null>) {
+    setSearchData(state, action: PayloadAction<Filter | null>) {
       state.searchData = action.payload;
     },
-    setRooms(state, action: PayloadAction<roomType[] | undefined>) {
-      state.rooms = action.payload;
+    setRooms(state, action: PayloadAction<HotelType[] | undefined>) {
+      state.hotelData = action.payload;
     },
   },
 });

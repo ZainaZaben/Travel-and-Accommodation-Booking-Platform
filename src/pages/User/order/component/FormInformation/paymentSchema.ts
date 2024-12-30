@@ -1,30 +1,54 @@
-import * as Yup from "yup";
+import * as yup from "yup";
 
-const paymentSchema = Yup.object().shape({
-  fullName: Yup.string().required("Full Name is required"),
-
-  email: Yup.string()
-    .email("Invalid email address")
-    .required("Email is required"),
-
-  paymentMethod: Yup.string().required("Payment Method is required"),
-  cardNumber: Yup.string()
-    .required("Card Number is required", "Invalid card number")
-    .matches(/^\d{4} \d{4} \d{4} \d{4}$/, "Invalid card number"),
-
-  expirationDate: Yup.string()
-    .required("Expiration Date is required")
-    .matches(
-      /^(0?[1-9]|1[0-2])\/?(2[4-9]|3[0-9]|4[0-9]|50)$/,
-      "Invalid expiration date format"
+export const validationSchema = yup.object().shape({
+  customerName: yup.string().required("Please enter your full name"),
+  payment: yup.string().required("Please select your payment method"),
+  email: yup.string().email().required("Please enter your email"),
+  state: yup.string().required("Please enter your state"),
+  city: yup.string().required("Please enter your city"),
+  paymentMethod: yup
+    .object()
+    .shape({
+      name: yup.string(),
+      value: yup.string(),
+    })
+    .required("Please select your payment method"),
+  cardNumber: yup
+    .string()
+    .when(
+      "paymentMethod.value",
+      (value: Array<string>, schema: yup.StringSchema) => {
+        return value.includes("Cash")
+          ? schema.optional()
+          : schema
+              .required("Please enter your card number")
+              .matches(/^\d{4} \d{4} \d{4} \d{4}$/, "Invalid card number");
+      }
     ),
-
-  cvv: Yup.string().required("CVV is required"),
-
-  billingAddress: Yup.object().shape({
-    state: Yup.string().required("State is required"),
-    city: Yup.string().required("City is required"),
-  }),
+  expDate: yup
+    .string()
+    .when(
+      "paymentMethod.value",
+      (value: Array<string>, schema: yup.StringSchema) => {
+        return value.includes("Cash")
+          ? schema.optional()
+          : schema
+              .required("Please enter the card expiration date")
+              .matches(
+                /^(0?[1-9]|1[0-2])\/?(2[4-9]|3[0-9]|4[0-9]|50)$/,
+                "Invalid expiration date format"
+              );
+      }
+    ),
+  CVV: yup
+    .string()
+    .when(
+      "paymentMethod.value",
+      (value: Array<string>, schema: yup.StringSchema) => {
+        return value.includes("Cash")
+          ? schema.optional()
+          : schema.required("Please enter the card CVV");
+      }
+    ),
+  notes: yup.string(),
 });
-
-export default paymentSchema;

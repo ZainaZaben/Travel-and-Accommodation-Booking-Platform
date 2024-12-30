@@ -9,56 +9,67 @@ import Details from "./component/Details";
 import PictureGallery from "./component/PictureGallery";
 import AvailbleRooms from "./component/AvailbleRooms";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 const MyLayout: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetHotel(id);
   if (isLoading)
     return (
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
       <Lottie
         animationData={animationData}
-        style={{ width: "200px", height: "200px", margin: "1rem" }}
+        style={{ width: "100px", height: "100px", margin: "1rem" }}
       />
+    </div>
     );
   return (
     <>
-    <NavBar />
-     <Container sx={{ py: 10, mt: -5 }}>
-      
-      {data ? (
-        <Grid container spacing={2}>
-          <Grid container item spacing={2}>
-            <Grid item xs={12} md={3}>
-              <Details
-                id={id}
-                starRating={data.starRating}
-                city={data.location}
-                description={data.description}
-                name={data.hotelName}
-              />
-            </Grid>
+      <NavBar />
+      <Container sx={{ py: 10, mt: -5 }}>
+        {data ? (
+          <Grid container spacing={2}>
+            <Grid container item spacing={2}>
+              <Grid item xs={12} md={3}>
+                <Details
+                  id={id}
+                  starRating={data.starRating}
+                  city={data.location}
+                  description={data.description}
+                  name={data.hotelName}
+                />
+              </Grid>
 
-            <Grid item xs={12} md={9}>
-              <PictureGallery id={id} />
+              <Grid item xs={12} md={9}>
+                <PictureGallery id={id} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid container item mt={2} spacing={2}>
-            <Grid item xs={12} md={3}>
-              <Location
+            <Grid container item mt={2} spacing={2}>
+              <Grid item xs={12} md={3}>
+                <Location
                   hotelName={data.hotelName}
                   latitude={data.latitude}
-                  longitude={data.longitude} 
-                  location={data.location}              
-                  />
-            </Grid>
-            <Grid item xs={12} md={9} spacing={2}>
-            <h3 >Available Rooms</h3>
-              <AvailbleRooms id={id} />
+                  longitude={data.longitude}
+                  location={data.location}
+                />
+              </Grid>
+              <Grid item xs={12} md={9} spacing={2}>
+                <h3>Available Rooms</h3>
+                <AvailbleRooms id={id} />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      ) : null}
+        ) : null}
       </Container>
+      <Footer />
     </>
   );
 };

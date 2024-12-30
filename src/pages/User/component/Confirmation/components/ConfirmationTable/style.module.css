@@ -1,0 +1,86 @@
+.confirmationDiv {
+    background-color: #ddd;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    border-radius: 5px;
+    /* border: 2px solid #ccc;  */
+}
+
+.TableContainer {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cartHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cartHeader img {
+    width: 40px;
+    height: auto;
+}
+
+.cartHeader h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 10px;
+}
+
+.TableHeadRow {
+    background-color: #f1f1f1;
+
+}
+
+.tableCell {
+    padding: 12px 15px;
+    font-size: 17px;
+    color: #333;
+    text-align: left;
+    font-weight: bold;
+}
+
+.TableHeadRow .MuiTableCell-root {
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+.TableBodyRow {
+    background-color: #fafafa;
+}
+
+.printButton {
+    background-color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    color: rgba(5,151,191,255);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 2rem 0;
+    border: 1px solid rgba(5,151,191,255);
+}
+
+.printButton:hover {
+    background-color: rgba(6,151,191,255);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .confirmationDiv {
+        width: 90%;
+    }
+
+    .TableHeadRow {
+        padding: 8px 12px;
+    }
+}

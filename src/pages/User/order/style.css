@@ -1,0 +1,63 @@
+.formContainer {
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formHeader {
+    color: #333;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+.field {
+    margin-bottom: 20px; 
+}
+
+/* Responsive styles */
+@media screen and (max-width: 900px) {
+    .formContainer {
+        padding: 16px;
+    }
+
+    .formHeader {
+        font-size: 1.3rem;
+    }
+
+    /* Add more space between the fields when screen is smaller */
+    .field {
+        margin-bottom: 18px; 
+    }
+
+    /* Change layout to stack vertically */
+    .formContainer {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .formContainer {
+        padding: 14px;  /* Smaller padding on very small screens */
+    }
+
+    .formHeader {
+        font-size: 1.2rem;
+    }
+
+    .field {
+        margin-bottom: 15px;  /* Slightly smaller margin between fields */
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .formHeader {
+        font-size: 1.1rem;
+    }
+
+    .field {
+        margin-bottom: 12px;  /* Decreased space for small screens */
+    }
+}

@@ -15,14 +15,14 @@ import {
   Logout as LogoutIcon,
 } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/features/cartSlice";
 import { logOut } from "@/features/authSlice";
 import colors from "@/constant/colorConstants";
 import ButtonLink from "./ButtonLink";
 import logo from "@/assets/whiteLogo.png";
+import { useAppSelector } from "@/store";
 const AppBarComponent: React.FC = () => {
   const dispatch = useDispatch();
-  const cart = () => dispatch(addToCart());
+  const { rooms } = useAppSelector((state) => state.cart);
   const logoutUser = () => dispatch(logOut());
 
   return (
@@ -73,7 +73,7 @@ const AppBarComponent: React.FC = () => {
           <ButtonLink
             to="/order"
             icon={
-              <Badge badgeContent={cart.length} color="error">
+              <Badge badgeContent={rooms?.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             }

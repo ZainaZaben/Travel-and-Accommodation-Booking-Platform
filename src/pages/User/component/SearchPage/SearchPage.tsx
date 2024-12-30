@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import SearchBar from "./component/SearchBar";
 import NavBar from "@/components/NavBar";
@@ -6,18 +5,15 @@ import SearchResult from "./component/SearchResult";
 import styles from "./style.module.css";
 import SearchFilters from "./component/SearchFilters";
 import Footer from "@/components/Footer";
-
-interface Filters {
-  [key: string]: any;
-}
+import { Filter } from "@/pages/User/types";
 
 const SearchPage: React.FC = () => {
-  const [filters, setFilters] = useState<Filters>({});
+  const [filters, setFilters] = useState<Filter>({} as Filter);
 
-  const handleFilter = (newFilters: Filters) => {
+
+  const handleFilter = (newFilters: Filter) => {
     setFilters(newFilters);
   };
-
 
   return (
     <div>

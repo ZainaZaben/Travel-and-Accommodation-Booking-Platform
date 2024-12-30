@@ -22,7 +22,7 @@ const DrawerComponent: React.FC<DrawerComponentProps> = ({
   handleDrawerToggle,
 }) => {
   const dispatch = useDispatch();
-  const navItems = ["Home", "Search", "Cart"];
+  const navItems = ["Home", "Search", "Order"];
   const navigate = useNavigate();
 
   const handleNavigate = (item: string) => {

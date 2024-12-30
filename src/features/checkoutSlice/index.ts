@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface FormState {
   formValues: Record<string, any> | null;
 }
 
 const initialState: FormState = {
-  formValues: null,
+  formValues: {},
 };
 
 const checkoutReducer = createSlice({
   name: "form",
   initialState,
   reducers: {
-    setFormValues: (state, action: PayloadAction<Record<string, any>>) => {
+    setFormValues: (state, action) => {
       state.formValues = action.payload;
     },
     clearFormValues: (state) => {

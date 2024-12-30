@@ -25,7 +25,7 @@ const HotelMapLocation: React.FC<HotelMapLocationProps> = ({
         center={position}
         zoom={13}
         scrollWheelZoom={false}
-        style={{ width: "100%", height: "600px" }}
+        style={{ width: "100%", height: "630px" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

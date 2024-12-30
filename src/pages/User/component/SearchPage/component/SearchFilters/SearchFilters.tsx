@@ -1,44 +1,33 @@
-import { Formik, Form } from "formik";
-import {
-  Slider,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  Button,
-  Typography,
-  Box,
-} from "@mui/material";
-import styles from "./style.module.css";
 import React from "react";
+import { Formik, Form } from "formik";
+import { Slider, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Button, Typography, Box } from "@mui/material";
+import styles from "./style.module.css";
+import { Filter } from "@/pages/User/types";
 
-// Initial values for the form
+interface SearchFiltersProps {
+  onFilter: (newFilters: Filter) => void;
+}
+
 const initialValues = {
   priceRange: [50, 180],
   starRating: null,
   amenities: [] as string[],
   roomType: "",
-  sort: "",
 };
 
-const SearchFilters: React.FC = () => {
-  // Handle filtration on form submission
+const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
   const handleFiltration = (values: typeof initialValues) => {
-    const starRating = values.starRating !== "" ? parseInt(values.starRating as string) : "";
-    // Here, you can handle the values after filtration, like updating a state or making an API call
-    console.log({
+    const starRating = values.starRating ? parseInt(values.starRating as string) : 0;
+    onFilter({
       ...values,
       starRating: starRating,
     });
   };
 
-  // Handle clear filters
   const handleClearFilters = (resetForm: () => void) => {
-    console.log(initialValues); // Reset values here, maybe dispatch or update state
     resetForm();
+    // clear the filters in the parent state
+    onFilter(initialValues);
   };
 
   return (
@@ -50,26 +39,22 @@ const SearchFilters: React.FC = () => {
             <FormControl component="fieldset" sx={{ width: "100%", mb: 2 }}>
               <FormLabel component="legend">Your Budget per night:</FormLabel>
               <Slider
-  value={values.priceRange}
-  onChange={(event, newValue) => {
-    handleChange({
-      target: {
-        name: "priceRange",
-        value: newValue,
-      },
-    });
-  }}
-  valueLabelDisplay="auto"
-  valueLabelFormat={(value) => `$${value}`}
-  min={20}
-  max={400}
-  step={10}
-/>
-              <Typography
-                variant="body2"
-                color="text.primary"
-                sx={{ marginBottom: 1 }}
-              >
+                value={values.priceRange}
+                onChange={(event, newValue) => {
+                  handleChange({
+                    target: {
+                      name: "priceRange",
+                      value: newValue,
+                    },
+                  });
+                }}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `$${value}`}
+                min={20}
+                max={400}
+                step={10}
+              />
+              <Typography variant="body2" color="text.primary" sx={{ marginBottom: 1 }}>
                 ${values.priceRange[0]} - ${values.priceRange[1]}
               </Typography>
             </FormControl>
@@ -84,12 +69,7 @@ const SearchFilters: React.FC = () => {
                 onChange={handleChange("starRating")}
               >
                 {[3, 4, 5].map((rating) => (
-                  <FormControlLabel
-                    key={rating}
-                    value={rating}
-                    control={<Radio />}
-                    label={`${rating} Stars`}
-                  />
+                  <FormControlLabel key={rating} value={rating} control={<Radio />} label={`${rating} Stars`} />
                 ))}
               </RadioGroup>
             </FormControl>
@@ -134,59 +114,22 @@ const SearchFilters: React.FC = () => {
                 onChange={handleChange("roomType")}
               >
                 {["King Suite", "Standard", "Cabin"].map((type) => (
-                  <FormControlLabel
-                    key={type}
-                    value={type}
-                    control={<Radio />}
-                    label={type}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-
-            {/* Sort By */}
-            <FormControl component="fieldset" sx={{ display: "block", mb: 2 }}>
-              <FormLabel component="legend">Sort By</FormLabel>
-              <RadioGroup
-                aria-label="sort-by"
-                name="sort-by"
-                value={values.sort}
-                onChange={handleChange("sort")}
-              >
-                {["Price", "Rating"].map((type) => (
-                  <FormControlLabel
-                    key={type}
-                    value={type}
-                    control={<Radio />}
-                    label={type}
-                  />
+                  <FormControlLabel key={type} value={type} control={<Radio />} label={type} />
                 ))}
               </RadioGroup>
             </FormControl>
 
             {/* Buttons */}
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                marginBottom: "1rem",
-                gap: 1,
-              }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "1rem", gap: 1 }}>
               <Button
-  type="submit"
-  variant="contained"
-  color="primary"
-  onClick={() => {
-    // e.preventDefault(); // Optional, prevents default behavior.
-    handleSubmit(); // Call Formik's handleSubmit explicitly.
-  }}
-  sx={{ width: 150 }}
->
-  Filter
-</Button>
-
-
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={() => handleSubmit()}
+                sx={{ width: 150 }}
+              >
+                Filter
+              </Button>
               <Button
                 type="reset"
                 variant="contained"

@@ -10,32 +10,18 @@ import dayjs from "dayjs";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setData, setSearchData, setRooms } from "@/features/searchSlice";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import SearchItemContainer from "../SearchItemContainer";
 import { Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search"; 
+import useSnackbar from "@/hooks/useSnackbar";
 
 const SearchBar: React.FC = () => {
+  const { showSnackbar} = useSnackbar();
   const [searchState, setSearchState] = useState({
     isOptionsOpened: false,
     isDateOpened: false,
   });
   const { isOptionsOpened, isDateOpened } = searchState;
-
-  const [snackbar, setSnackbar] = useState({
-    open: false,
-    severity: "info" as "info" | "error" | "success" | "warning",
-    message: "",
-  });
-
-  const showSnackbar = (severity: typeof snackbar.severity, message: string) => {
-    setSnackbar({ open: true, severity, message });
-  };
-
-  const handleSnackbarClose = () => {
-    setSnackbar((prev) => ({ ...prev, open: false }));
-  };
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -49,7 +35,10 @@ const SearchBar: React.FC = () => {
       formattedCheckInDate < currentDate ||
       formattedCheckOutDate < currentDate
     ) {
-      showSnackbar("error", "Whoops! Check-in date or check-out date cannot be in the past.");
+      showSnackbar({
+        message: "Whoops! Check-in date or check-out date cannot be in the past.",
+        severity: "error",
+      });
     }
 
     const newCheckInDate =
@@ -151,7 +140,9 @@ const SearchBar: React.FC = () => {
         setSearchData({
           priceRange: values.priceRange, 
           starRating: values.starRating,
-          amenities: values.amenities, 
+          amenities: searchParams.get("amenities")
+      ? JSON.parse(searchParams.get("amenities") || "[]")
+      : [],
           roomType: values.roomType,
         })
       );
@@ -237,15 +228,6 @@ const SearchBar: React.FC = () => {
           </SearchItemContainer>
         </SearchContainer>
       </div>
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: "100%" }}>
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
     </form>
   );
 };

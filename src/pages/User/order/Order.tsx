@@ -3,24 +3,21 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { useAppSelector } from "@/store";
-import Modal from "./component/Modal";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "@/features/cartSlice";
 import RoomList from "./component/ProductListItem/RoomList";
 import NavBar from "@/components/NavBar";
 import colors from "@/constant/colorConstants";
+import FormInformation from "./component/FormInformation";
+import './style.css';
+import Footer from "@/components/Footer";
 
 const Order = () => {
-  const [isOpen, setOpen] = React.useState(false);
   const { rooms } = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const handleOpen = () => setOpen(true);
-  const onClose = () => setOpen(false);
   const handleRemove = (roomId: number) => {
     dispatch(removeFromCart({ roomId }));
   };
@@ -36,42 +33,58 @@ const Order = () => {
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
             justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
+            alignItems: "flex-start",
+            width: "100%",
+            gap: "2rem", 
           }}
           mt={3}
         >
-          <Typography variant="h4" color="textSecondary" gutterBottom>
-            Orders Details
-          </Typography>
-          <Button sx={{ color: colors.primaryColor, border: "solid 1px" }}>
-            Total Price: ${totalAmount}
-          </Button>
-        </Box>
-        <Divider />
-        {rooms.length ? (
-          <RoomList handleRemove={handleRemove} />
-        ) : (
-          <Alert
-            severity="error"
+          {/* Left side: Order details */}
+          <Box sx={{ flex: 1 }}>
+            <Typography variant="h4" color="textSecondary" gutterBottom>
+              Orders Details
+            </Typography>
+            <Button sx={{ color: colors.primaryColor, border: "solid 1px" }}>
+              Total Price: ${totalAmount}
+            </Button>
+            {rooms.length ? (
+              <RoomList handleRemove={handleRemove} />
+            ) : (
+              <Alert
+                severity="error"
+                sx={{
+                  margin: "1rem 0px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                Please Add Item To Your Cart!&#128516;
+              </Alert>
+            )}
+          </Box>
+
+          {/* Right side: Form Information */}
+          <Box
             sx={{
-              margin: "1rem 0px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              flex: 1,
+              borderLeft: {
+                xs: "none", 
+                sm: "1px solid #ddd", 
+              },
+              paddingLeft: {
+                xs: "0", 
+                sm: "2rem", 
+              },
             }}
           >
-            Please Add Item To Your Cart!&#128516;
-          </Alert>
-        )}
-        {!!rooms.length && (
-          <Button onClick={handleOpen} variant="contained" sx={{ mt: 3 }}>
-            Checkout
-          </Button>
-        )}
-        <Modal isOpen={isOpen} onClose={onClose} price={totalAmount} />
+            <FormInformation />
+          </Box>
+        </Box>
       </Container>
+      <Footer />
     </>
   );
 };

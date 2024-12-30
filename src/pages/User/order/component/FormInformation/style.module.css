@@ -17,6 +17,10 @@
     margin: 1rem 0;
 }
 
+.formContainer .field {
+    margin-bottom: 20px; /* Adjusted spacing between fields */
+}
+
 @media screen and (max-width: 600px) {
     .formContainer {
         padding: 16px;
@@ -27,16 +31,12 @@
     }
 
     .field {
-        margin-bottom: 15px;
+        margin-bottom: 20px; /* Maintain extra space on smaller screens */
     }
 }
 
 @media screen and (max-width: 450px) {
     .formHeader {
         font-size: 1.2rem;
-    }
-
-    .field {
-        margin-bottom: 10px;
     }
 }

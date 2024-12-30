@@ -8,10 +8,11 @@ import {
   Box,
 } from "@mui/material";
 import StarRating from "@/components/StarRating";
-import { propsType } from "@/pages/User/component/SearchPage/types"; 
+import { HotelType } from "@/pages/User/types"; 
 import React from "react";
+import colors from "@/constant/colorConstants";
 
-const SearchResultItem: React.FC<{ hotel: propsType }> = ({ hotel }) => {
+const SearchResultItem: React.FC<{ hotel: HotelType }> = ({ hotel }) => {
   const {
     hotelName,
     starRating,
@@ -76,8 +77,6 @@ const SearchResultItem: React.FC<{ hotel: propsType }> = ({ hotel }) => {
                 key={index}
                 label={amenity.name}
                 sx={{
-                  backgroundColor: "green",
-                  color: "#fff",
                   fontSize: "0.9rem",
                   borderRadius: 5,
                   mr: 1.5,
@@ -96,13 +95,13 @@ const SearchResultItem: React.FC<{ hotel: propsType }> = ({ hotel }) => {
           <Box>
             <Button
               variant="contained"
-              color="primary"
               sx={{
+                backgroundColor: colors.primaryColor,
                 borderRadius: 5,
                 width: { xs: "100%", md: "50%" },
               }}
             >
-              See Availability
+              Reserve Now
             </Button>
           </Box>
         </CardContent>
