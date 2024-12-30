@@ -16,7 +16,7 @@ const useAddBookingAPI = () => {
         showSnackbar({ severity: "success", message: "Your booking has been confirmed" });
       dispatch(removeCart());
 
-      navigate("confirmation");
+      navigate("/confirmation");
     },
     onError: () => {
       showSnackbar({ severity: "error", message: "Sorry, your booking is failed" });

@@ -14,6 +14,5 @@ export interface AddBookingAPIResponse {
   bookingDateTime: string;
   totalCost: number;
   paymentMethod: string;
-  bookingStatus: string;
   confirmationNumber: string;
 }

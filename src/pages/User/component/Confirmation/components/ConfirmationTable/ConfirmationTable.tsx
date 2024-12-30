@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useRef } from "react";
 import { useAppSelector } from "@/store";
 import {
   Container,
@@ -14,34 +15,45 @@ import {
 import styles from "./style.module.css";
 import Logo from "@/assets/logo.png";
 import { jsPDF } from "jspdf";
+import { addCart, addToCart, removeCart } from "@/features/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ConfirmationTable: React.FC = () => {
   const formValues = useAppSelector((state) => state.checkout.formValues);
-  const cart = useAppSelector((state) => state.cart.rooms);
+  console.log(formValues);
+  const { rooms } = useAppSelector((state) => state.cart);
+  console.log(rooms);
   const searchParams = useAppSelector((state) => state.search.data);
 
-  const getNumberOfNights = (): number => {
-    if (!searchParams?.checkInDate || !searchParams?.checkOutDate) return 0;
-    const checkIn = new Date(searchParams.checkInDate);
-    const checkOut = new Date(searchParams.checkOutDate);
-    return Math.ceil(
-      (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
-    );
-  };
+  const totalAmount = rooms.reduce((accumulator, room) => {
+    const { quantity, price } = room;
+    return accumulator + quantity * price;
+  }, 0);
+  // const getNumberOfNights = (): number => {
+  //   if (!searchParams?.checkInDate || !searchParams?.checkOutDate) return 0;
+  //   const checkIn = new Date(searchParams.checkInDate);
+  //   const checkOut = new Date(searchParams.checkOutDate);
+  //   return Math.ceil(
+  //     (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
+  //   );
+  // };
 
   const fields = [
     { label: "Confirmation Number", value: "20240109-5460" },
     { label: "Full Name", value: formValues?.customerName || "N/A" },
     { label: "Email", value: formValues?.email || "N/A" },
     { label: "State", value: formValues?.state || "N/A" },
-    { label: "Payment Method", value: formValues?.paymentMethod?.value || "N/A" },
+    {
+      label: "Payment Method",
+      value: formValues?.paymentMethod?.value || "N/A",
+    },
     { label: "Check-in date", value: searchParams?.checkInDate || "N/A" },
     { label: "Check-out date", value: searchParams?.checkOutDate || "N/A" },
-    { label: "Room Type", value: cart[0]?.roomType || "N/A" },
-    { label: "Room Number", value: cart[0]?.roomNumber || "N/A" },
+    { label: "Room Type", value: rooms[0]?.roomType || "N/A" },
+    { label: "Room Number", value: rooms[0]?.roomNumber || "N/A" },
     {
       label: "Total Cost",
-      value: `$${(cart[0]?.price || 0) * getNumberOfNights()}`,
+      value: `$${totalAmount}`,
     },
   ];
 
@@ -49,7 +61,7 @@ const ConfirmationTable: React.FC = () => {
 
   const handleDownload = () => {
     if (componentRef.current) {
-      const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      const doc = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
       const content = componentRef.current;
 
       doc.setFontSize(10);
@@ -66,6 +78,14 @@ const ConfirmationTable: React.FC = () => {
       });
     }
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addCart(rooms));
+    return () => {
+      dispatch(removeCart());
+    };
+  }, [dispatch]);
 
   return (
     <>

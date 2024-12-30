@@ -1,6 +1,6 @@
-import { PaymentMethod } from "./types";
+import { Booking, PaymentMethod } from "./types";
 
-export const initialValues = {
+export const initialValues : Booking = {
   customerName: "",
   email: "",
   state: "",

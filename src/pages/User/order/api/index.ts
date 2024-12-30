@@ -1,9 +1,8 @@
 import axiosInstance from "@/api";
-import { AddBookingAPIRequest, AddBookingAPIResponse } from "./types";
+import { AddBookingAPIResponse } from "./types";
 
-export const addBookingAPI = async (payload: AddBookingAPIRequest) => {
-  const res = await axiosInstance.post<AddBookingAPIResponse>("/bookings", {
-    ...payload,
-  });
-  return res.data;
+export const addBookingAPI = async (payload) => {
+  return axiosInstance
+    .post<AddBookingAPIResponse>("/bookings", payload)
+    .then((response) => response.data);
 };

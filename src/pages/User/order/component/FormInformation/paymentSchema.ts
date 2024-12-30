@@ -2,7 +2,6 @@ import * as yup from "yup";
 
 export const validationSchema = yup.object().shape({
   customerName: yup.string().required("Please enter your full name"),
-  payment: yup.string().required("Please select your payment method"),
   email: yup.string().email().required("Please enter your email"),
   state: yup.string().required("Please enter your state"),
   city: yup.string().required("Please enter your city"),
@@ -47,7 +46,7 @@ export const validationSchema = yup.object().shape({
       (value: Array<string>, schema: yup.StringSchema) => {
         return value.includes("Cash")
           ? schema.optional()
-          : schema.required("Please enter the card CVV");
+          : schema.required("Please enter the card CVV").matches(/^[0-9]{3,4}$/, "CVV must be 3 or 4 digits");
       }
     ),
   notes: yup.string(),

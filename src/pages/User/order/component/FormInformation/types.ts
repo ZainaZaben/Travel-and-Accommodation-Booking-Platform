@@ -7,3 +7,28 @@ export interface PaymentMethod {
   name: string;
   value: string;
 }
+
+export interface Booking {
+  customerName: string;
+  email: string;
+  state: string;
+  city: string;
+  paymentMethod: {
+    value: string,
+  },
+  cardNumber: string;
+  expDate: string;
+  CVV: string;
+  notes: string;
+}
+
+
+export interface Confirmation {
+  customerName: string;
+  email: string;
+  state: string;
+  city: string;
+  paymentMethod: {
+    value: string,
+  },
+}

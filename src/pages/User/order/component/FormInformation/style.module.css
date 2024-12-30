@@ -10,6 +10,7 @@
     color: #333;
     font-size: 1.5rem;
     text-align: center;
+    margin-bottom: 16px;
 }
 
 .formContainer p {
@@ -17,8 +18,8 @@
     margin: 1rem 0;
 }
 
-.formContainer .field {
-    margin-bottom: 20px; /* Adjusted spacing between fields */
+.formField {
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 600px) {

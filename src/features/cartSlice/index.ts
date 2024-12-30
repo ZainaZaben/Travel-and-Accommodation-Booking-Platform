@@ -31,6 +31,9 @@ export const cartSlice = createSlice({
         );
       } else state.rooms.push(action.payload.room);
     },
+    addCart:(state,action)=>{
+      state.rooms=action.payload;
+    },
     removeFromCart: (state, action: PayloadAction<actionRemove>) => {
       state.rooms = state.rooms.filter(
         (room) => room.roomId !== action.payload.roomId
@@ -42,5 +45,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart,removeCart } = cartSlice.actions;
+export const { addToCart,addCart, removeFromCart,removeCart } = cartSlice.actions;
 export default cartSlice.reducer;
