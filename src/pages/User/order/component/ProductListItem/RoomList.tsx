@@ -13,6 +13,19 @@ interface roomTypeProps {
 }
 const RoomList: React.FC<roomTypeProps> = ({ handleRemove }) => {
   const { rooms } = useAppSelector((state) => state.cart);
+  const dateValues = useAppSelector((state) => state.search.data);
+  const NumOfDays = rooms.reduce((acc) => {
+    if (!dateValues?.checkInDate || !dateValues?.checkOutDate) return acc;
+    
+    const checkIn = new Date(dateValues.checkInDate);
+    const checkOut = new Date(dateValues.checkOutDate);
+    const daysBetween = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+    return daysBetween;
+  }, 0);
+
+  const totalAmount = rooms.reduce(() => {
+    return NumOfDays * rooms[0]?.price;
+  }, 0);
 
   return (
     <List>
@@ -51,8 +64,8 @@ const RoomList: React.FC<roomTypeProps> = ({ handleRemove }) => {
             primary={room.roomType}
             secondary={
               <>
-                Price: ${room.price} per night | #days: {room.quantity} <br />
-                Total Price: ${room.price * room.quantity}
+                Price: ${room.price} per night | #days: {NumOfDays} <br />
+                Total Price: ${totalAmount}
               </>
             }
           />

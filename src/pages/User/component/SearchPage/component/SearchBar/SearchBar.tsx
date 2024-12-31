@@ -7,22 +7,28 @@ import OptionItem from "../OptionItem";
 import { SearchContainer } from "./styles";
 import { useFormik } from "formik";
 import dayjs from "dayjs";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {  useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setData, setSearchData, setRooms } from "@/features/searchSlice";
+import { setData } from "@/features/searchSlice";
 import SearchItemContainer from "../SearchItemContainer";
 import { Button } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"; 
+import SearchIcon from "@mui/icons-material/Search";
 import useSnackbar from "@/hooks/useSnackbar";
+import { dataTypes } from "@/pages/User/types"; 
 
-const SearchBar: React.FC = () => {
-  const { showSnackbar} = useSnackbar();
+interface SearchBarProps {
+  onFilter?: (filters: dataTypes) => void; 
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onFilter }) => {
+  const { showSnackbar } = useSnackbar();
   const [searchState, setSearchState] = useState({
     isOptionsOpened: false,
     isDateOpened: false,
   });
   const { isOptionsOpened, isDateOpened } = searchState;
 
+ 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -93,9 +99,6 @@ const SearchBar: React.FC = () => {
     const oldValue = formik.values[option];
     const newValue = increment ? oldValue + 1 : oldValue - 1;
     formik.setFieldValue(option, newValue);
-    if (option === "numberOfRooms") {
-      dispatch(setRooms(newValue));
-    }
   };
 
   const formik = useFormik({
@@ -109,15 +112,8 @@ const SearchBar: React.FC = () => {
       adults: parseInt(searchParams.get("adults") || "2", 10),
       children: parseInt(searchParams.get("children") || "0", 10),
       numberOfRooms: parseInt(searchParams.get("numberOfRooms") || "1", 10),
-      priceRange: searchParams.get("priceRange")
-        ? JSON.parse(searchParams.get("priceRange") || "[]") 
-        : [], 
-      starRating: searchParams.get("starRating")
-        ? parseInt(searchParams.get("starRating") || "0") 
-        : null,
-      amenities: searchParams.get("amenities") || "",
-      roomType: searchParams.get("roomType") || "any",
     },
+    
     onSubmit: (values) => {
       const newSearchParams = new URLSearchParams(
         Object.entries({
@@ -127,30 +123,32 @@ const SearchBar: React.FC = () => {
           adults: values.adults.toString(),
           children: values.children.toString(),
           numberOfRooms: values.numberOfRooms.toString(),
-          priceRange: JSON.stringify(values.priceRange),
-          starRating: values.starRating?.toString() || "0", 
-          amenities: values.amenities,
-          roomType: values.roomType,
         })
       );
-  
+
       setSearchParams(newSearchParams);
-  
+
       dispatch(
-        setSearchData({
-          priceRange: values.priceRange, 
-          starRating: values.starRating,
-          amenities: searchParams.get("amenities")
-      ? JSON.parse(searchParams.get("amenities") || "[]")
-      : [],
-          roomType: values.roomType,
+        setData({
+          city: values.city,
+          checkInDate: values.checkInDate,
+          checkOutDate: values.checkOutDate,
+          adults: values.adults,
+          children: values.children,
+          numberOfRooms: values.numberOfRooms,
         })
       );
-  
+      onFilter({
+        city: values.city,
+          checkInDate: values.checkInDate,
+          checkOutDate: values.checkOutDate,
+          adults: values.adults,
+          children: values.children,
+          numberOfRooms: values.numberOfRooms,
+      });
       navigate("/search?" + newSearchParams.toString());
     },
   });
-  
 
   return (
     <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>

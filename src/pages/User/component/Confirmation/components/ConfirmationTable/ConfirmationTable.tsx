@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef } from "react";
 import { useAppSelector } from "@/store";
 import {
@@ -15,31 +14,31 @@ import {
 import styles from "./style.module.css";
 import Logo from "@/assets/logo.png";
 import { jsPDF } from "jspdf";
-import { addCart, addToCart, removeCart } from "@/features/cartSlice";
+import { addCart, removeCart } from "@/features/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ConfirmationTable: React.FC = () => {
   const formValues = useAppSelector((state) => state.checkout.formValues);
   console.log(formValues);
+  const dateValues = useAppSelector((state) => state.search.data);
   const { rooms } = useAppSelector((state) => state.cart);
   console.log(rooms);
-  const searchParams = useAppSelector((state) => state.search.data);
+  // const searchParams = useAppSelector((state) => state.search.data);
 
-  const totalAmount = rooms.reduce((accumulator, room) => {
-    const { quantity, price } = room;
-    return accumulator + quantity * price;
+  const totalAmount = rooms.reduce((acc) => {
+    if (!dateValues?.checkInDate || !dateValues?.checkOutDate) return acc;
+    
+    const checkIn = new Date(dateValues.checkInDate);
+    const checkOut = new Date(dateValues.checkOutDate);
+    console.log(checkIn);
+    console.log(checkOut);
+    const daysBetween = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+    console.log(acc + daysBetween);
+    return acc + daysBetween;
   }, 0);
-  // const getNumberOfNights = (): number => {
-  //   if (!searchParams?.checkInDate || !searchParams?.checkOutDate) return 0;
-  //   const checkIn = new Date(searchParams.checkInDate);
-  //   const checkOut = new Date(searchParams.checkOutDate);
-  //   return Math.ceil(
-  //     (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
-  //   );
-  // };
 
   const fields = [
-    { label: "Confirmation Number", value: "20240109-5460" },
+    { label: "Confirmation Number", value: "20241231-2354" },
     { label: "Full Name", value: formValues?.customerName || "N/A" },
     { label: "Email", value: formValues?.email || "N/A" },
     { label: "State", value: formValues?.state || "N/A" },
@@ -47,13 +46,13 @@ const ConfirmationTable: React.FC = () => {
       label: "Payment Method",
       value: formValues?.paymentMethod?.value || "N/A",
     },
-    { label: "Check-in date", value: searchParams?.checkInDate || "N/A" },
-    { label: "Check-out date", value: searchParams?.checkOutDate || "N/A" },
+    { label: "Check-in date", value: dateValues?.checkInDate || "N/A" },
+    { label: "Check-out date", value: dateValues?.checkOutDate || "N/A" },
     { label: "Room Type", value: rooms[0]?.roomType || "N/A" },
     { label: "Room Number", value: rooms[0]?.roomNumber || "N/A" },
     {
       label: "Total Cost",
-      value: `$${totalAmount}`,
+      value: `$${totalAmount* rooms[0]?.price}`,
     },
   ];
 
@@ -109,8 +108,8 @@ const ConfirmationTable: React.FC = () => {
                     key={index}
                     className={index % 2 === 0 ? styles.TableBodyRow : ""}
                   >
-                    <TableCell>{field.label}</TableCell>
-                    <TableCell>{field.value}</TableCell>
+                    <TableCell className={styles.tabledata}>{field.label}</TableCell>
+                    <TableCell className={styles.tabledata}>{field.value}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

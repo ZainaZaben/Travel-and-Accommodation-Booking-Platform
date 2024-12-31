@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dataTypes, Filter, HotelType } from "@/pages/User/types";
 import { extractDate, extractTomorowDate } from "@/utilties/extractDate";
-// import { roomType } from "@/pages/User/component/SearchPage/component/SearchBar/types";
-// import { propsType } from "@/pages/User/component/SearchPage/types";
 
 interface SearchState {
   data: dataTypes | null;
   searchData: Filter | null;
   hotelData: HotelType[]| null;
-  // rooms: roomType[] | null;
 }
 
 const initialState: SearchState = {

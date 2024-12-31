@@ -7,7 +7,7 @@ import SearchResultItem from "../SearchResultItem";
 import { Link } from "react-router-dom";
 import { searchRes } from "@/pages/User/component/SearchPage/api";
 import { setRooms } from "@/features/searchSlice";
-import { HotelType } from "@/pages/User/types"; 
+import { dataTypes, HotelType } from "@/pages/User/types"; 
 import useSnackbar from "@/hooks/useSnackbar";
 import loaderAnimation from "@/lotties/infinity-loader.json";
 import { useAppSelector } from "@/store";
@@ -15,15 +15,39 @@ import { Filter } from "@/pages/User/types";
 
 interface SearchResultProps {
   filters: Filter;
+  searchData: dataTypes;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ filters }) => {
+const SearchResult: React.FC<SearchResultProps> = ({ filters, searchData }) => {
   const dispatch = useDispatch();
   const { showSnackbar} = useSnackbar();
   
   const { data, hotelData } = useAppSelector((state) => state.search); 
   const [filteredResults, setFilteredResults] = useState<HotelType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      if (!searchData) return;
+
+      setIsLoading(true);
+      try {
+        const fetchedResults = await searchRes(searchData);
+        dispatch(setRooms(fetchedResults));
+      } catch (err) {
+        console.error(err);
+        showSnackbar({
+          message: "Failed to fetch the results. Please try again later.",
+          severity: "error",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchSearchResults();
+  }, [searchData,dispatch]);
+
   const fetchResults = useCallback( async () => {
     console.log(data);
     if (!data) return;

@@ -26,7 +26,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
 
   const handleClearFilters = (resetForm: () => void) => {
     resetForm();
-    // clear the filters in the parent state
     onFilter(initialValues);
   };
 

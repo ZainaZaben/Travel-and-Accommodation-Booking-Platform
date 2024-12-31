@@ -21,9 +21,17 @@ const Order = () => {
   const handleRemove = (roomId: number) => {
     dispatch(removeFromCart({ roomId }));
   };
-  const totalAmount = rooms.reduce((accumulator, room) => {
-    const { quantity, price } = room;
-    return accumulator + quantity * price;
+  const dateValues = useAppSelector((state) => state.search.data);
+  const totalAmount = rooms.reduce((acc) => {
+    if (!dateValues?.checkInDate || !dateValues?.checkOutDate) return acc;
+    
+    const checkIn = new Date(dateValues.checkInDate);
+    const checkOut = new Date(dateValues.checkOutDate);
+    console.log(checkIn);
+    console.log(checkOut);
+    const daysBetween = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+    console.log(acc + daysBetween);
+    return (acc + daysBetween) * rooms[0]?.price;
   }, 0);
 
   return (
