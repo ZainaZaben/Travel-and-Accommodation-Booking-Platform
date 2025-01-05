@@ -1,8 +1,8 @@
-# Musafir - Travel and Accommodation Booking Platform
+# Musafir 🌐✈️🏨
 
 Welcome to **Musafir**, a platform designed for travel and accommodation booking. Musafir provides users with robust booking functionalities and administrators with an easy-to-use management interface.
 
-## Features
+## ✨ Features
 
 ### User Features:
 - **Login and Authentication**: Secure access with user authentication via API.
@@ -18,14 +18,14 @@ Welcome to **Musafir**, a platform designed for travel and accommodation booking
 - **Entity Management**: Create, update, and delete entities (Cities, Hotels, Rooms).
 - **Search and Filters**: Efficient admin-side search functionality.
 
-## Tech Stack
+## 🚀 Tech Stack
 
 - **Frontend**: React, TypeScript, CSS Modules
 - **State Management**: Redux (User Side) and Context API (Admin Side)
 - **API Integration**: Swagger-documented backend APIs
 - **Build Tool**: Vite
 
-## API Overview
+## 📡 API Overview
 
 The backend APIs are documented via Swagger and provide endpoints for:
 - User Authentication
@@ -35,7 +35,7 @@ The backend APIs are documented via Swagger and provide endpoints for:
 
 Swagger Documentation: [API Swagger Link](https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net/swagger/index.html)
 
-## Directory Structure
+## 📂 Directory Structure
 
 ```plaintext
 Musafir/
@@ -275,3 +275,8 @@ If you have any questions or want to reach out, feel free to connect with me:
 ## 💖 Acknowledgement
 
 I express my deepest gratitude to **Foothill Technology Solutions** for providing me with the opportunity to participate in this internship cycle. Their steadfast support has been pivotal in the successful development of this project.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/62269745/174906065-7bb63e14-879a-4740-849c-0821697aeec2.png#gh-light-mode-only" width="40%">
+    <img src="https://user-images.githubusercontent.com/62269745/174906068-aad23112-20fe-4ec8-877f-3ee1d9ec0a69.png#gh-dark-mode-only" width="40%">
+</p>
