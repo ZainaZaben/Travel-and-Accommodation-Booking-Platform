@@ -70,7 +70,7 @@ const ConfirmationTable: React.FC = () => {
         callback: (doc) => {
           doc.save("confirmation_details.pdf");
         },
-        margin: [10, 10, 10, 10],
+        margin: [20, 20, 20, 20],
         html2canvas: {
           scale: 0.3,
         },

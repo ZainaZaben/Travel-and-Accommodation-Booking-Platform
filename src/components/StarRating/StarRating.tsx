@@ -1,11 +1,16 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import { Star } from "@mui/icons-material";
 
-const StarRating = ({ starsNumber, className }) => {
+interface StarRatingProps {
+  starsNumber: number;
+  className?: string;
+}
+
+const StarRating: FC<StarRatingProps> = ({ starsNumber, className }) => {
   return (
     <div className={className} style={{ display: "flex" }}>
       {Array(starsNumber)
-        .fill()
+        .fill(null)
         .map((_, i) => (
           <Star key={i} sx={{ color: "#e6b219" }} />
         ))}
@@ -14,8 +19,3 @@ const StarRating = ({ starsNumber, className }) => {
 };
 
 export default StarRating;
-
-StarRating.propTypes = {
-  starsNumber: PropTypes.number.isRequired,
-  className: PropTypes.string,
-};
