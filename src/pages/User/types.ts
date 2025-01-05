@@ -6,6 +6,7 @@ export interface dataTypes {
   checkInDate: string;
   checkOutDate: string;
 }
+
 export interface Filter {
   priceRange: number[];
   starRating: number;

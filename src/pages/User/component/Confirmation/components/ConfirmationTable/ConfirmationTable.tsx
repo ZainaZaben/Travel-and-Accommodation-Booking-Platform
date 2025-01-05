@@ -19,22 +19,18 @@ import { useDispatch } from "react-redux";
 
 const ConfirmationTable: React.FC = () => {
   const formValues = useAppSelector((state) => state.checkout.formValues);
-  console.log(formValues);
   const dateValues = useAppSelector((state) => state.search.data);
-  const { rooms } = useAppSelector((state) => state.cart);
-  console.log(rooms);
+  const rooms = useAppSelector((state) => state.cart.rooms);
 
   const totalAmount = rooms.reduce((acc) => {
     if (!dateValues?.checkInDate || !dateValues?.checkOutDate) return acc;
 
     const checkIn = new Date(dateValues.checkInDate);
     const checkOut = new Date(dateValues.checkOutDate);
-    console.log(checkIn);
-    console.log(checkOut);
     const daysBetween = Math.ceil(
       (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
     );
-    console.log(acc + daysBetween);
+
     return acc + daysBetween;
   }, 0);
 

@@ -6,10 +6,12 @@ import useCreateHotel from "./hook/useCreateHotel";
 import TransitionsModal from "@/pages/Admin/component/Hotels/component/CreateHotel/Modal";
 
 const searchTerm: Search = { name: "", searchQuery: "" };
+
 interface modalProps {
   handleClose: () => void;
   open: ModalType;
 }
+
 const CreateHotel: React.FC<modalProps> = ({ handleClose, open }) => {
   const { data } = useSWR("cities", () => searchCity(searchTerm));
   const { formik, isPending } = useCreateHotel();

@@ -3,9 +3,9 @@ import { DeleteHotel } from "../api";
 import useSnackbar from "@/hooks/useSnackbar";
 import { AxiosBaseError } from "@/types";
 
-
 const useDeleteHotel = () => {
   const { showSnackbar } = useSnackbar();
+  
   const { mutate, isPending } = useMutation({
     mutationFn: DeleteHotel,
     onSuccess: () => {

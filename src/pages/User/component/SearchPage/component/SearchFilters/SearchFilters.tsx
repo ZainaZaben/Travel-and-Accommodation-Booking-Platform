@@ -34,7 +34,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
       {({ values, handleChange, handleSubmit, resetForm }) => (
         <Form style={{ flex: 1.2 }}>
           <div className={styles.filterSide}>
-            {/* Price Range Slider */}
             <FormControl component="fieldset" sx={{ width: "100%", mb: 2 }}>
               <FormLabel component="legend">Your Budget per night:</FormLabel>
               <Slider
@@ -58,7 +57,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
               </Typography>
             </FormControl>
 
-            {/* Star Rating */}
             <FormControl component="fieldset" sx={{ mb: 2 }}>
               <FormLabel component="legend">Star Rating:</FormLabel>
               <RadioGroup
@@ -73,7 +71,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
               </RadioGroup>
             </FormControl>
 
-            {/* Amenities */}
             <FormControl component="fieldset" sx={{ display: "block", mb: 2 }}>
               <FormLabel component="legend">Amenities:</FormLabel>
               <FormGroup>
@@ -103,7 +100,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
               </FormGroup>
             </FormControl>
 
-            {/* Room Type */}
             <FormControl component="fieldset" sx={{ display: "block", mb: 2 }}>
               <FormLabel component="legend">Room Type:</FormLabel>
               <RadioGroup
@@ -118,7 +114,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilter }) => {
               </RadioGroup>
             </FormControl>
 
-            {/* Buttons */}
             <Box sx={{ display: "flex", justifyContent: "center", marginBottom: "1rem", gap: 1 }}>
               <Button
                 type="submit"

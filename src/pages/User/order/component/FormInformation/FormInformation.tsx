@@ -8,12 +8,10 @@ import useInformation from "./hooks/useInformation";
 
 const FormInformation: React.FC = () => {
   const { formik, handleFormatCardNumber } = useInformation();
-  console.log("Formik errors:", formik.errors);
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.formHeader}>Payment Information</h2>
 
-      {/* Using form onSubmit */}
       <form onSubmit={formik.handleSubmit}>
         <TextField
           className={styles.formField}

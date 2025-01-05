@@ -1,17 +1,17 @@
 import { BaseResponse } from "@/types";
-interface amenType{
-  name:string;
-  description:string;
+interface AmenType {
+  name: string;
+  description: string;
 }
 export interface Response extends BaseResponse {
- hotelName: string;
-  location:string;
-  description:string;
-  latitude:number;
+  hotelName: string;
+  location: string;
+  description: string;
+  latitude: number;
   longitude: number;
-  amenities:amenType[],
+  amenities: AmenType[];
   starRating: number;
-  availableRooms: 50,
+  availableRooms: 50;
   imageUrl: string;
-  cityId:number
+  cityId: number;
 }

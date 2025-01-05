@@ -5,23 +5,25 @@ import { useMutation } from "@tanstack/react-query";
 import useSnackbar from "@/hooks/useSnackbar";
 import { createCity } from "../api";
 import useAdmin from "@/pages/Admin/context/useAdmin";
+
 const useCreateCity = () => {
-   const {cities,setCities}=useAdmin()
+  const { cities, setCities } = useAdmin();
   const { showSnackbar } = useSnackbar();
+
   const { mutate, isPending } = useMutation({
     mutationFn: createCity,
     onSuccess: (data) => {
-      setCities([...cities,data])
+      setCities([...cities, data]);
       showSnackbar({ severity: "success", message: "Create New City Success" });
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
       showSnackbar({
         severity: "error",
         message: "Error Create City",
       });
     },
   });
+
   const formik = useFormik({
     initialValues: INITIAL_FORM_STATE,
     onSubmit: (values, { resetForm }) => {

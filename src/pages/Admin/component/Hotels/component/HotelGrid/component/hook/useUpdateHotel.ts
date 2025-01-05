@@ -9,14 +9,17 @@ import useSearch from "@/pages/Admin/context/useAdmin";
 import { ModalType } from "@/pages/Admin/types";
 import useAdmin from "@/pages/Admin/context/useAdmin";
 import { hotel } from "../../api/types";
+
 const useUpdateHotel = () => {
   const { showSnackbar } = useSnackbar();
   const { hotels, setHotels } = useAdmin();
   const { open, setOpen } = useSearch();
+
   const INITIAL_STATE = {
     ...INITIAL_FORM_STATE,
     ...open.hotel,
   };
+
   const { mutate, isPending } = useMutation({
     mutationFn: EditHotel,
     onSuccess: () => {
@@ -32,6 +35,7 @@ const useUpdateHotel = () => {
       });
     },
   });
+
   const formik = useFormik<RequestBody>({
     initialValues: INITIAL_STATE,
     onSubmit: (values, { resetForm }: FormikHelpers<RequestBody>) => {

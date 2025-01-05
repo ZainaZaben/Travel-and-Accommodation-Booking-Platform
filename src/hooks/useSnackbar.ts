@@ -6,6 +6,7 @@ import { useAppSelector } from '../store';
 const useSnackbar = () => {
   const dispatch = useDispatch();
   const state=useAppSelector(state=>state.snackBar);
+  
   const show = (payload: ShowSnackbarPayload) => {
     dispatch(showSnackbar(payload));
   };

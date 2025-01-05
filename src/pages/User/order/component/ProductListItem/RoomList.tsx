@@ -2,9 +2,11 @@ import React from "react";
 import { ListItem, ListItemText, IconButton, List, Box } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppSelector } from "@/store";
+
 interface roomTypeProps {
   handleRemove: (roomId: number) => void;
 }
+
 const RoomList: React.FC<roomTypeProps> = ({ handleRemove }) => {
   const { rooms } = useAppSelector((state) => state.cart);
 

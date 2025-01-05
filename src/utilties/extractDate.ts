@@ -5,6 +5,7 @@ export function extractDate(): string {
   const day = date.getDate();
   return `${month}/${day}/${year}`;
 }
+
 export function extractTomorowDate(): string {
   const date: Date = new Date();
   const year = date.getFullYear();

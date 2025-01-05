@@ -53,7 +53,6 @@ const HotelInfo: React.FC<HotelInfoProps> = ({
         {city}
       </Typography>
 
-      {/* Amenities Section */}
       <div className={styles.hotelAmenities}>
         <h3>Amenities</h3>
         {amenitiesLoading ? (
@@ -70,7 +69,6 @@ const HotelInfo: React.FC<HotelInfoProps> = ({
         )}
       </div>
 
-      {/* Guest Reviews Section */}
       <Typography variant="h6" align="center" gutterBottom>
         Guest-Reviews
       </Typography>

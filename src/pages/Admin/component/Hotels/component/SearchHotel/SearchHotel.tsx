@@ -4,16 +4,19 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import useSearch from "@/pages/Admin/context/useAdmin";
 import CreateHotel from "../HotelGrid/component/CreateHotel";
 import { types } from "@/pages/Admin/types";
+
 const SearchHotel = () => {
   const { Params, setParams, open, setOpen } = useSearch();
   const handleOpen = () => setOpen({ open: true, type: types.CREATE });
   const handleClose = () => setOpen({ open: false, type: types.CREATE });
+
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     if (Params) setParams({ ...Params, [name]: value });
   };
+
   return (
     <Paper sx={{ padding: 1 }}>
       <Grid container columnSpacing={1}>

@@ -1,5 +1,5 @@
 import { BaseResponse } from "@/types";
-interface amenType{
+interface AmenType{
   name:string;
   description:string;
 }
@@ -9,7 +9,7 @@ export interface Response extends BaseResponse {
   description:string;
   latitude:number;
   longitude: number;
-  amenities:amenType[],
+  amenities:AmenType[],
   starRating: number;
   availableRooms: 50,
   imageUrl: string;

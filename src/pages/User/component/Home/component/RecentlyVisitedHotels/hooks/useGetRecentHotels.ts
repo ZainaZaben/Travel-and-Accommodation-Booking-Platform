@@ -12,10 +12,12 @@ interface tokenType {
   exp: number;
   iss: string;
 }
+
 const useRecentHotels = () => {
   const { token } = useAppSelector((state) => state.auth);
   const decoded: tokenType = jwtDecode(token);
   const id = decoded.user_id;
+  
   const { data, isLoading, error } = useQuery({
     queryKey: ["recent-hotels", id],
     queryFn: () => getRecentHotels(id),

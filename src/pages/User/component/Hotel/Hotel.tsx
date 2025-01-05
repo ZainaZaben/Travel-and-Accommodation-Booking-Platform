@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 const MyLayout: React.FC = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetHotel(id);
+
   if (isLoading)
     return (
       <div
@@ -31,6 +32,7 @@ const MyLayout: React.FC = () => {
         />
       </div>
     );
+
   return (
     <>
       <NavBar />

@@ -15,25 +15,29 @@ import { Edit } from "@mui/icons-material";
 import { hotel } from "../api/types";
 import useAdmin from "@/pages/Admin/context/useAdmin";
 
-interface bodyProps {
+interface BodyProps {
   searchTerm: Search | null;
   handleOpen: (row: hotel) => void;
 }
-const TableBody: React.FC<bodyProps> = ({ searchTerm, handleOpen }) => {
+
+const TableBody: React.FC<BodyProps> = ({ searchTerm, handleOpen }) => {
   const { data } = useSWR("hotels", () => searchHotel(searchTerm));
   const { hotels, setHotels } = useAdmin();
   const { mutate } = useDeleteHotel();
+
   const handleDelete = useCallback(
     (id: number) => {
       mutate(id);
     },
     [mutate]
   );
+
   useEffect(() => {
     if (data) {
       setHotels(data);
     }
   }, [data, setHotels]);
+  
   return (
     <Body>
       {hotels?.map((row) => (

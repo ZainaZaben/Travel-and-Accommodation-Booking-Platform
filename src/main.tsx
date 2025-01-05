@@ -11,6 +11,7 @@ import { persistor, store } from "./store";
 import { AdminProvider } from "./pages/Admin/context/AdminContext";
 import Loader from "./container/Loader";
 import ErrorBoundry from "./ErrorBoundry";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

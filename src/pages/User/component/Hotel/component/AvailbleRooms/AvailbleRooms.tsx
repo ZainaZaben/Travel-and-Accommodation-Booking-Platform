@@ -8,14 +8,17 @@ import useSnackbar from "@/hooks/useSnackbar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cartSlice";
 import "./styles.css";
-interface roomsProps {
+
+interface RoomsProps {
   id: string | undefined;
 }
-const AvailbleRooms: React.FC<roomsProps> = ({ id }) => {
+
+const AvailbleRooms: React.FC<RoomsProps> = ({ id }) => {
   const { data, isLoading } = useGetRooms(id);
   const [rooms, setRooms] = useState<roomType[]>();
   const { showSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (data) {
       setRooms(
@@ -25,6 +28,7 @@ const AvailbleRooms: React.FC<roomsProps> = ({ id }) => {
       );
     }
   }, [data]);
+
   const handleQuantityInc = (index: number) => {
     setRooms(
       rooms?.map((room) =>
@@ -34,6 +38,7 @@ const AvailbleRooms: React.FC<roomsProps> = ({ id }) => {
       )
     );
   };
+
   const handleQuantityDec = (index: number) => {
     setRooms(
       rooms?.map((room) =>
@@ -43,6 +48,7 @@ const AvailbleRooms: React.FC<roomsProps> = ({ id }) => {
       )
     );
   };
+
   const handleAddToCart = useCallback(
     (room: roomType) => {
       dispatch(addToCart({ room }));
@@ -55,6 +61,7 @@ const AvailbleRooms: React.FC<roomsProps> = ({ id }) => {
   );
 
   if (isLoading) return <Loader />;
+  
   return (
     <Paper className="room-root">
       <Grid container columnSpacing={2} rowGap={2} mb={1}>

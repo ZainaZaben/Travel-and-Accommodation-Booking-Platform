@@ -18,11 +18,12 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-interface modalProps {
+interface ModalProps {
   handleClose: () => void;
   open: boolean;
 }
-const TransitionsModal: React.FC<modalProps> = ({ handleClose, open }) => {
+
+const TransitionsModal: React.FC<ModalProps> = ({ handleClose, open }) => {
   const { formik, isPending } = useCreateCity();
 
   return (

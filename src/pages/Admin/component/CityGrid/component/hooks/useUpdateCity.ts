@@ -2,7 +2,6 @@ import { UpdateCity } from "../../api";
 import { useMutation } from "@tanstack/react-query";
 import useSnackbar from "@/hooks/useSnackbar";
 
-
 export default function useUpdateCity() {
   const { showSnackbar } = useSnackbar();
 

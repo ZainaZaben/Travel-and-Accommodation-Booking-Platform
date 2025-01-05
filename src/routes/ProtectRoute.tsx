@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { ProtectedRouteProps } from "./types";
 import BlockUI from "../container/BlockUI";
 import { useAppSelector } from "../store";
+
 const ProtectedRoute: FC<PropsWithChildren<ProtectedRouteProps>> = ({
   allowedRoles,
 }) => {

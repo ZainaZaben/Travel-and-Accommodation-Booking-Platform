@@ -12,9 +12,11 @@ import { ModalType, Search, types } from "@/pages/Admin/types";
 import UpdateHotel from "./component/UpdateHotel";
 import { hotel } from "./api/types";
 import { INITIAL_FORM_STATE } from "../CreateHotel/constant";
+
 export default function HotelGrid() {
   const { Params, open, setOpen } = useSearch();
   const debouncedSearchValue: Search | null = useDebounce<Search>(Params, 1000);
+
   const handleClose = () => {
     setOpen((prev: ModalType) => {
       return { ...prev, hotel: { ...INITIAL_FORM_STATE, id: 0 } };

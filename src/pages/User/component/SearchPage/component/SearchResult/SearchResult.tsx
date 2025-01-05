@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -34,8 +35,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ filters, searchData }) => {
       try {
         const fetchedResults = await searchRes(searchData);
         dispatch(setRooms(fetchedResults));
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
         showSnackbar({
           message: "Failed to fetch the results. Please try again later.",
           severity: "error",
@@ -49,7 +49,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ filters, searchData }) => {
   }, [searchData, dispatch]);
 
   const fetchResults = useCallback(async () => {
-    console.log(data);
     if (!data) return;
 
     setIsLoading(true);
@@ -57,7 +56,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ filters, searchData }) => {
       const fetchedResults = await searchRes(data);
       dispatch(setRooms(fetchedResults));
     } catch (err) {
-      console.error(err);
       showSnackbar({
         message: "Failed to fetch the results. Please try again later.",
         severity: "error",

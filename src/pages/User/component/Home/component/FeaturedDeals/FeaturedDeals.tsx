@@ -9,15 +9,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const FeaturedDeals: React.FC = () => {
-  const { data: deals, isLoading } = useGetFeaturedDeals();
-  const [error, setError] = useState<string | null>(null);
+  const { data: deals, isLoading, isError } = useGetFeaturedDeals();
   const [slidesToShow, setSlidesToShow] = useState<number>(1);
-
-  useEffect(() => {
-    if (!isLoading && !deals) {
-      setError("Failed to fetch deals. Please try again later.");
-    }
-  }, [isLoading, deals]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,12 +42,12 @@ const FeaturedDeals: React.FC = () => {
   return (
     <div className={styles.featuredDealsContainer}>
       <h2> Featured Deals </h2>
-      {error && <p>Something went wrong. Please try again later.</p>}
+      {isError && <p>Something went wrong. Please try again later.</p>}
 
       {isLoading ? (
         <Slider {...settings}>
-          {[1, 2, 3].map((_, index) => (
-            <SkeletonDealCard key={index} />
+          {[1, 2, 3].map((e) => (
+            <SkeletonDealCard key={e} />
           ))}
         </Slider>
       ) : (

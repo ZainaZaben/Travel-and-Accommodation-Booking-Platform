@@ -12,9 +12,11 @@ import Footer from "@/components/Footer";
 const Order = () => {
   const { rooms } = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
+
   const handleRemove = (roomId: number) => {
     dispatch(removeFromCart({ roomId }));
   };
+
   const totalAmount = rooms.reduce((accumulator, room) => {
     const { quantity, price } = room;
     return accumulator + quantity * price;
@@ -35,7 +37,6 @@ const Order = () => {
           }}
           mt={3}
         >
-          {/* Left side: Order details */}
           <Box sx={{ flex: 1 }}>
             <Typography variant="h4" color="textSecondary" gutterBottom>
               Orders Details
@@ -60,7 +61,6 @@ const Order = () => {
             )}
           </Box>
 
-          {/* Right side: Form Information */}
           <Box
             sx={{
               flex: 1,

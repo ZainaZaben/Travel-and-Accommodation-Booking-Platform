@@ -6,9 +6,11 @@ import { createHotel } from "../api";
 import { RequestBody } from "@/pages/Admin/component/Hotels/component/CreateHotel/types";
 import { INITIAL_FORM_STATE } from "@/pages/Admin/component/Hotels/component/CreateHotel/constant";
 import useAdmin from "@/pages/Admin/context/useAdmin";
+
 const useCreateHotel = () => {
   const { showSnackbar } = useSnackbar();
   const { setHotels, hotels } = useAdmin();
+
   const { mutate, isPending } = useMutation({
     mutationFn: createHotel,
     onSuccess: (data) => {
@@ -25,6 +27,7 @@ const useCreateHotel = () => {
       });
     },
   });
+
   const formik = useFormik<RequestBody>({
     initialValues: INITIAL_FORM_STATE,
     onSubmit: (values, { resetForm }: FormikHelpers<RequestBody>) => {

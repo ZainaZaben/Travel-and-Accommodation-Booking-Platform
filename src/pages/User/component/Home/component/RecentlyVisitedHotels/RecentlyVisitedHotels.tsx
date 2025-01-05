@@ -9,12 +9,14 @@ import {
 } from "@mui/material";
 import useRecentHotels from "./hooks/useGetRecentHotels";
 import styles from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 const RecentlyVisitedHotels: React.FC = () => {
   const { data: lastVisitedHotels, isLoading, error } = useRecentHotels();
+  const navigate = useNavigate();
 
   const handleNavigation = (hotelId: number) => {
-    console.log(`Navigate to hotel ID: ${hotelId}`);
+    navigate(`/hotel/${hotelId}`);
   };
 
   if (isLoading) {

@@ -20,23 +20,13 @@ interface DealCardProps {
 }
 
 const DealCard: React.FC<DealCardProps> = ({ deal }) => {
-  const {
-    hotelId,
-    roomPhotoUrl,
-    hotelName,
-    cityName,
-    hotelStarRating,
-    originalRoomPrice,
-    finalPrice,
-  } = deal;
-
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useGetHotel(hotelId.toString());
+  const { data, isLoading, error } = useGetHotel(deal.hotelId.toString());
 
   const handleDealClick = () => {
     if (!isLoading && data) {
-      navigate(`/hotel/${hotelId}`);
+      navigate(`/hotel/${deal.hotelId}`);
     } else {
       console.error("Error fetching hotel details:", error);
     }
@@ -44,22 +34,22 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
 
   return (
     <div onClick={handleDealClick} className={styles.dealCard}>
-      <img className={styles.roomPhoto} src={roomPhotoUrl} alt={hotelName} />
+      <img className={styles.roomPhoto} src={deal.roomPhotoUrl} alt={deal.hotelName} />
       <div className={styles.bottomContainer}>
         <div className={styles.topSpaceBetweenContainer}>
-          <h3 className={styles.hotelName}>{hotelName}</h3>
-          <StarRating starsNumber={hotelStarRating} />
+          <h3 className={styles.hotelName}>{deal.hotelName}</h3>
+          <StarRating starsNumber={deal.hotelStarRating} />
         </div>
         <div className={styles.bottomSpaceBetweenContainer}>
           <p className={styles.cityName}>
             <LocationOnIcon
               sx={{ color: "#3d3737", fontSize: "1.2rem", marginRight: 0.5 }}
             />
-            {cityName}
+            {deal.cityName}
           </p>
           <div className={styles.priceInfoContainer}>
-            <p className={styles.originalPrice}>${originalRoomPrice}</p>
-            <p className={styles.finalPrice}>${finalPrice}</p>
+            <p className={styles.originalPrice}>${deal.originalRoomPrice}</p>
+            <p className={styles.finalPrice}>${deal.finalPrice}</p>
           </div>
         </div>
       </div>

@@ -8,11 +8,10 @@ import {
 } from "@mui/material";
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material";
 import { Formik, Form } from "formik";
-import { useState } from "react";
 import useUpdateCity from "./component/hooks/useUpdateCity";
-import { Response } from "./api/types";
+import { City, Response } from "./api/types";
 import useSearch from "@/pages/Admin/context/useAdmin";
-import { validationSchema } from "./cityConfig";
+import { validationSchema } from "../CreateCity/schema";
 
 interface UpdateCityFormProps {
   open: boolean;
@@ -25,8 +24,7 @@ const UpdateCityForm: React.FC<UpdateCityFormProps> = ({
   onClose,
   entityData,
 }) => {
-  const { updateCity } = useUpdateCity();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { updateCity, isLoading: isSubmitting } = useUpdateCity();
 
   const { cities, setCities } = useSearch();
 
@@ -34,26 +32,24 @@ const UpdateCityForm: React.FC<UpdateCityFormProps> = ({
     return null;
   }
 
-  const handleUpdateClick = (values: Response, actions) => {
-    setIsSubmitting(true);
-    try {
-       updateCity({id:entityData.id, cityName:values.name, cityDescription:values.description});
-      const updatedCity = {
-        ...entityData,
-        name: values.name,
-        description: values.description,
-      };
-      setCities(
-        cities.map((city) => {
-          if (city.id === entityData.id) return updatedCity;
-          return city;
-        })
-      );
-    }  finally {
-      onClose();
-      actions.setSubmitting(false);
-      setIsSubmitting(false);
-    }
+  const handleUpdateClick = (values: City) => {
+    updateCity({
+      id: entityData.id,
+      cityName: values.name,
+      cityDescription: values.description,
+    });
+    const updatedCity = {
+      ...entityData,
+      name: values.name,
+      description: values.description,
+    };
+    setCities(
+      cities.map((city) => {
+        if (city.id === entityData.id) return updatedCity;
+        return city;
+      })
+    );
+    onClose();
   };
 
   const initialValues = {

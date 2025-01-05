@@ -1,6 +1,7 @@
 import axiosInstance from "@/api";
 import { Search } from "@/pages/Admin/types";
 import { hotelResponse, hotelResponseItem } from "./types";
+
 export const searchHotel = async (param: Search | null) => {
   const url = "/hotels";
   return await axiosInstance

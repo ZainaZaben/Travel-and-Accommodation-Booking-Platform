@@ -12,6 +12,7 @@ import { searchCity } from "./api";
 import useDeleteCity from "./component/hooks/useDeleteCity";
 import NumberOfHotel from "./component/NumberOfHotel";
 import useSearch from "@/pages/Admin/context/useAdmin";
+
 interface BodyProps {
   searchTerm: Search | null;
   onRowClick: (city: { id: number; name: string; description: string }) => void;

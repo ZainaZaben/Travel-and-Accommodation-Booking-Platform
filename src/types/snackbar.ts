@@ -1,6 +1,7 @@
 import { SnackbarOrigin } from "@mui/material/Snackbar";
 import { AlertColor } from "@mui/material/Alert";
 import { ReactNode } from "react";
+
 export interface ShowSnackbarPayload {
   title?: ReactNode;
   message: ReactNode;

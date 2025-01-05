@@ -33,7 +33,6 @@ const useInformation = () => {
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values, { resetForm }) => {
-      console.log("values", values);
       dispatch(setFormValues(values));
       addBooking({
         customerName: values.customerName,

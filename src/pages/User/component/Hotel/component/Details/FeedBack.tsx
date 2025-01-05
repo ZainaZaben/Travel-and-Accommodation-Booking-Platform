@@ -1,10 +1,12 @@
 import React from "react";
 import { Box, Typography, Rating } from "@mui/material";
+
 interface CustomerFeedbackProps {
   customerName: string;
   rating: number;
   description: string;
 }
+
 const CustomerFeedback: React.FC<CustomerFeedbackProps> = ({
   customerName,
   rating,
