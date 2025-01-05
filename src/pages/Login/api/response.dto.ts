@@ -5,6 +5,4 @@ export interface AuthData {
   userType: string;
 }
 
-export interface LoginResponse extends BaseResponse , AuthData {
-
-}
+export interface LoginResponse extends BaseResponse, AuthData {}

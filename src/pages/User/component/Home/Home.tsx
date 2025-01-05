@@ -11,17 +11,17 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-  
+
   const handleFilter = (searchParams: dataTypes) => {
     navigate(`/search?${searchParams.toString()}`);
   };
-  
+
   return (
     <>
       <NavBar />
       <IntroSection />
       <div className={styles.searchBar}>
-        <SearchBar onFilter={handleFilter}/>
+        <SearchBar onFilter={handleFilter} />
       </div>
       <div className={styles.container}>
         <FeaturedDeals />

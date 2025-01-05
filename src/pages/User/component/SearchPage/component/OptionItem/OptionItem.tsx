@@ -10,7 +10,13 @@ interface OptionItemProps {
   onDecrement: () => void;
 }
 
-const OptionItem: React.FC<OptionItemProps> = ({ label, min, count, onIncrement, onDecrement }) => {
+const OptionItem: React.FC<OptionItemProps> = ({
+  label,
+  min,
+  count,
+  onIncrement,
+  onDecrement,
+}) => {
   return (
     <div className={styles.optionItem}>
       <span className={styles.optionText}>{label}</span>

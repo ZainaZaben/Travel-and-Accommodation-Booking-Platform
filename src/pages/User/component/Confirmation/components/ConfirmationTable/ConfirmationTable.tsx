@@ -23,16 +23,17 @@ const ConfirmationTable: React.FC = () => {
   const dateValues = useAppSelector((state) => state.search.data);
   const { rooms } = useAppSelector((state) => state.cart);
   console.log(rooms);
-  // const searchParams = useAppSelector((state) => state.search.data);
 
   const totalAmount = rooms.reduce((acc) => {
     if (!dateValues?.checkInDate || !dateValues?.checkOutDate) return acc;
-    
+
     const checkIn = new Date(dateValues.checkInDate);
     const checkOut = new Date(dateValues.checkOutDate);
     console.log(checkIn);
     console.log(checkOut);
-    const daysBetween = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+    const daysBetween = Math.ceil(
+      (checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)
+    );
     console.log(acc + daysBetween);
     return acc + daysBetween;
   }, 0);
@@ -52,7 +53,7 @@ const ConfirmationTable: React.FC = () => {
     { label: "Room Number", value: rooms[0]?.roomNumber || "N/A" },
     {
       label: "Total Cost",
-      value: `$${totalAmount* rooms[0]?.price}`,
+      value: `$${totalAmount * rooms[0]?.price}`,
     },
   ];
 
@@ -69,7 +70,7 @@ const ConfirmationTable: React.FC = () => {
         callback: (doc) => {
           doc.save("confirmation_details.pdf");
         },
-        margin: [20, 20, 20, 20],
+        margin: [10, 10, 10, 10],
         html2canvas: {
           scale: 0.3,
         },
@@ -108,8 +109,12 @@ const ConfirmationTable: React.FC = () => {
                     key={index}
                     className={index % 2 === 0 ? styles.TableBodyRow : ""}
                   >
-                    <TableCell className={styles.tabledata}>{field.label}</TableCell>
-                    <TableCell className={styles.tabledata}>{field.value}</TableCell>
+                    <TableCell className={styles.tabledata}>
+                      {field.label}
+                    </TableCell>
+                    <TableCell className={styles.tabledata}>
+                      {field.value}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

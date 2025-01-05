@@ -55,7 +55,7 @@ const AppBarComponent: React.FC = () => {
           <Typography
             variant="h6"
             component={Link}
-            to="/"
+            to="/home"
             color="inherit"
             sx={{
               marginTop: "10px",
@@ -68,7 +68,7 @@ const AppBarComponent: React.FC = () => {
         </Box>
 
         <div>
-          <ButtonLink to="/" icon={<HomeIcon />} text="Home" />
+          <ButtonLink to="/home" icon={<HomeIcon />} text="Home" />
           <ButtonLink to="/search" icon={<SearchIcon />} text="Search" />
           <ButtonLink
             to="/order"

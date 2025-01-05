@@ -9,8 +9,9 @@ import { dataTypes, Filter } from "@/pages/User/types";
 
 const SearchPage: React.FC = () => {
   const [filters, setFilters] = useState<Filter>({} as Filter);
-  const [searchBarFilters, setSearchBarFilters] = useState<dataTypes>({} as dataTypes);
-
+  const [searchBarFilters, setSearchBarFilters] = useState<dataTypes>(
+    {} as dataTypes
+  );
 
   const handleFilter = (newFilters: Filter) => {
     setFilters(newFilters);
@@ -24,12 +25,12 @@ const SearchPage: React.FC = () => {
     <div>
       <NavBar />
       <div className={styles.searchBar}>
-        <SearchBar onFilter={handleSearchBarFilters}/>
+        <SearchBar onFilter={handleSearchBarFilters} />
       </div>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <SearchFilters onFilter={handleFilter} />
-          <SearchResult filters={filters} searchData={searchBarFilters}/>
+          <SearchResult filters={filters} searchData={searchBarFilters} />
         </div>
       </div>
       <Footer />

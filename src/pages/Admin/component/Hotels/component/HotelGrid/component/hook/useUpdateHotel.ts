@@ -1,10 +1,10 @@
-import { INITIAL_FORM_STATE } from "../../../CreateHotel/constant";
+import { INITIAL_FORM_STATE } from "@/pages/Admin/component/Hotels/component/CreateHotel/constant";
 import { FormikHelpers, useFormik } from "formik";
 import { validationSchema } from "../../../CreateHotel/schema";
 import { useMutation } from "@tanstack/react-query";
 import useSnackbar from "@/hooks/useSnackbar";
 import { EditHotel } from "../api";
-import { RequestBody } from "../../../CreateHotel/types";
+import { RequestBody } from "@/pages/Admin/component/Hotels/component/CreateHotel/types";
 import useSearch from "@/pages/Admin/context/useAdmin";
 import { ModalType } from "@/pages/Admin/types";
 import useAdmin from "@/pages/Admin/context/useAdmin";

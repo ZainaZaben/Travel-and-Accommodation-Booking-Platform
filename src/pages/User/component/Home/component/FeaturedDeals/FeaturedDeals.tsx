@@ -60,13 +60,12 @@ const FeaturedDeals: React.FC = () => {
       ) : (
         <div style={{ marginTop: "2rem", cursor: "pointer" }}>
           <Slider {...settings}>
-          {deals?.map((deal: Response) => (
+            {deals?.map((deal: Response) => (
               <DealCard key={deal.hotelId} deal={deal} />
             ))}
           </Slider>
         </div>
       )}
-
     </div>
   );
 };

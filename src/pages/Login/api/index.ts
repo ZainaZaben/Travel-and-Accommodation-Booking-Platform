@@ -1,4 +1,4 @@
-import axiosInstance from "../../../api";
+import axiosInstance from "@/api";
 import { LoginRequestBody } from "./request.dto";
 import { LoginResponse } from "./response.dto";
 

@@ -1,8 +1,5 @@
 import axiosInstance from "@/api";
-import {
-  extractDate,
-  extractTomorowDate,
-} from "@/utilties/extractDate";
+import { extractDate, extractTomorowDate } from "@/utilties/extractDate";
 import { Response } from "./types";
 export const getAvailableRooms = async (id: string | undefined) => {
   const param = {

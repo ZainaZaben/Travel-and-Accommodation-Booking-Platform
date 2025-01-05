@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Button,
-  TextField,
-  Typography,
-  Container,
-  CircularProgress,
-  Box,
-} from "@mui/material";
+import { Button, TextField, Typography, Container, Box } from "@mui/material";
 import useLogin from "../hook/useLogin";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store";
@@ -23,10 +16,10 @@ const LoginForm: React.FC = () => {
     <>
       {userType ? (
         <Navigate
-        to={userType === UserRole.Admin ? "/manageCities" : "/"}
-        replace
-        state={{ from: location.pathname }}
-      />
+          to={userType === UserRole.Admin ? "/manageCities" : "/home"}
+          replace
+          state={{ from: location.pathname }}
+        />
       ) : (
         <Container component={"div"} maxWidth="xs" className="login-root">
           <Box
@@ -92,7 +85,7 @@ const LoginForm: React.FC = () => {
                 },
               }}
             >
-              {isPending ? <CircularProgress size={24} /> : "Sign In"}
+              {isPending ? "Signing In..." : "Sign In"}
             </Button>
           </form>
         </Container>

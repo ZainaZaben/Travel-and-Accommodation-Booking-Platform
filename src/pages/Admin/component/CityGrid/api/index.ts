@@ -22,3 +22,15 @@ export const DeleteCity = async (id: number) => {
     .delete(`/cities/${id}`)
     .then((response) => response.data);
 };
+
+export const UpdateCity = async (body: {
+  id: number;
+  cityName: string;
+  cityDescription: string;
+}) => {
+  const response = await axiosInstance.put(`/cities/${body.id}`, {
+    name: body.cityName,
+    description: body.cityDescription,
+  });
+  return response.data;
+};

@@ -13,13 +13,19 @@ const useAddBookingAPI = () => {
   const { mutate: addBooking, isPending } = useMutation({
     mutationFn: addBookingAPI,
     onSuccess: () => {
-        showSnackbar({ severity: "success", message: "Your booking has been confirmed" });
+      showSnackbar({
+        severity: "success",
+        message: "Your booking has been confirmed",
+      });
       dispatch(removeCart());
 
       navigate("/confirmation");
     },
     onError: () => {
-      showSnackbar({ severity: "error", message: "Sorry, your booking is failed" });
+      showSnackbar({
+        severity: "error",
+        message: "Sorry, your booking is failed",
+      });
     },
   });
 

@@ -1,5 +1,5 @@
 import { BaseResponse } from "@/types";
-export interface Response extends BaseResponse {
+export interface RoomResponse extends BaseResponse {
   roomId: number;
   roomNumber: number;
   roomPhotoUrl: string;

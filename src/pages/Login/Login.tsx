@@ -30,10 +30,10 @@ const LoginPage: React.FC = () => {
                 maxWidth: "70%",
                 borderRadius: 2,
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                display: "flex", 
-                justifyContent: "center", 
-                alignItems: "center", 
-                height: "50%", 
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "50%",
               }}
             >
               <LoginForm />

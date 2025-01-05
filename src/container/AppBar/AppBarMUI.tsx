@@ -3,7 +3,6 @@ import {
   ImageListItem,
   Box,
   Toolbar,
-  Badge,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -14,27 +13,19 @@ import AppBar from "../AppBarHeader/AppBarHeader";
 import { useAppSelector } from "../../store";
 import { handleToggle } from "../../features/openSlice";
 import { useDispatch } from "react-redux";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { logOut } from "../../features/authSlice";
-import { UserRole } from "../../constant/auth";
-import { useNavigate } from "react-router-dom";
 import logo from "@/assets/whiteLogo.png";
 import colors from "@/constant/colorConstants";
 
 const AppBarMUI: React.FC = () => {
   const { open } = useAppSelector((state) => state.open);
-  const { userType, token } = useAppSelector((state) => state.auth);
-  const { rooms } = useAppSelector((state) => state.cart);
-  const navigate = useNavigate();
+  const { token } = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
   const handleToggleDrawer = () => {
     dispatch(handleToggle({ open: !open }));
   };
   const handleLogout = () => {
     dispatch(logOut());
-  };
-  const handleShopping = () => {
-    navigate("/order");
   };
   return (
     <>
@@ -86,13 +77,6 @@ const AppBarMUI: React.FC = () => {
               </Typography>
             </Box>
           </Box>
-          {userType === UserRole.User && (
-            <IconButton sx={{ color: "white" }} onClick={handleShopping}>
-              <Badge badgeContent={rooms?.length} color="secondary">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-          )}
           {token && (
             <Tooltip title="Logout">
               <IconButton sx={{ color: "white" }} onClick={handleLogout}>

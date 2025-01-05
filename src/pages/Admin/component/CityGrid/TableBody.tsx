@@ -1,24 +1,27 @@
+import React, { useCallback, useEffect } from "react";
 import {
   TableRow,
   TableBody as Body,
   TableCell,
   IconButton,
 } from "@mui/material";
-import React, { useCallback, useEffect } from "react";
-import { Search } from "../../types";
-import useSWR from "swr";
-import { searchCity } from "./api";
 import DeleteIcon from "@mui/icons-material/Delete";
-import NumberOfHotel from "./component/NumberOfHotel";
+import useSWR from "swr";
+import { Search } from "../../types";
+import { searchCity } from "./api";
 import useDeleteCity from "./component/hooks/useDeleteCity";
+import NumberOfHotel from "./component/NumberOfHotel";
 import useSearch from "@/pages/Admin/context/useAdmin";
-interface bodyProps {
+interface BodyProps {
   searchTerm: Search | null;
+  onRowClick: (city: { id: number; name: string; description: string }) => void;
 }
-const TableBody: React.FC<bodyProps> = ({ searchTerm }) => {
+
+const TableBody: React.FC<BodyProps> = ({ searchTerm, onRowClick }) => {
   const { data } = useSWR(searchTerm, searchCity);
   const { cities, setCities } = useSearch();
   const { mutate } = useDeleteCity();
+
   const handleDelete = useCallback(
     (id: number) => {
       mutate(id);
@@ -26,6 +29,7 @@ const TableBody: React.FC<bodyProps> = ({ searchTerm }) => {
     },
     [mutate, cities, setCities]
   );
+
   useEffect(() => {
     if (data) {
       setCities(data);
@@ -38,6 +42,10 @@ const TableBody: React.FC<bodyProps> = ({ searchTerm }) => {
         <TableRow
           key={row.id}
           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          onClick={() => {
+            onRowClick(row);
+          }}
+          style={{ cursor: "pointer" }}
         >
           <TableCell component="th" scope="row">
             {row.name}
@@ -55,7 +63,10 @@ const TableBody: React.FC<bodyProps> = ({ searchTerm }) => {
             <IconButton
               aria-label="delete"
               size="large"
-              onClick={() => handleDelete(row.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(row.id);
+              }}
               color="error"
             >
               <DeleteIcon />

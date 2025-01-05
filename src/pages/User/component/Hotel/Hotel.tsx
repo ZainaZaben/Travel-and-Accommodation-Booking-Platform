@@ -17,19 +17,19 @@ const MyLayout: React.FC = () => {
   if (isLoading)
     return (
       <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        width: "100%",
-      }}
-    >
-      <Lottie
-        animationData={animationData}
-        style={{ width: "100px", height: "100px", margin: "1rem" }}
-      />
-    </div>
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <Lottie
+          animationData={animationData}
+          style={{ width: "100px", height: "100px", margin: "1rem" }}
+        />
+      </div>
     );
   return (
     <>

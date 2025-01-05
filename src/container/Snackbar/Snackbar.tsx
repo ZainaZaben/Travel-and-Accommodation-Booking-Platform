@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { FC } from "react";
 import MuiSnackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";

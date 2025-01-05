@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Modal from "@mui/material/Modal";
 import Lottie from "lottie-react";
 import animationData from "@/lotties/infinity-loader.json";

@@ -20,7 +20,12 @@ interface DateCheckProps {
   dateValues: DateValues;
 }
 
-const DateCheck: React.FC<DateCheckProps> = ({ handleSetDate, isDateOpened, toggleDate, dateValues }) => {
+const DateCheck: React.FC<DateCheckProps> = ({
+  handleSetDate,
+  isDateOpened,
+  toggleDate,
+  dateValues,
+}) => {
   const [date, setDate] = useState([
     {
       startDate: dayjs(dateValues.checkInDate).toDate(),

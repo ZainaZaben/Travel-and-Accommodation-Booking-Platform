@@ -1,5 +1,5 @@
 import axiosInstance from "@/api";
-import { RequestBody } from "../../../CreateHotel/types";
+import { RequestBody } from "@/pages/Admin/component/Hotels/component/CreateHotel/types";
 
 export const createHotel = async (body: RequestBody) => {
   return await axiosInstance.post(`/cities/${body.cityId}/hotels`, body);

@@ -7,18 +7,13 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-// import GenericSnackbar from "../../../../components/GenericSnackbar";
 import useRecentHotels from "./hooks/useGetRecentHotels";
-// import { useDispatch } from "react-redux";
-// import { showSnackbar } from "@/features/snackbar";
 import styles from "./style.module.css";
 
 const RecentlyVisitedHotels: React.FC = () => {
   const { data: lastVisitedHotels, isLoading, error } = useRecentHotels();
-    // const dispatch= useDispatch();
 
   const handleNavigation = (hotelId: number) => {
-    // dispatch(showSnackbar({}))
     console.log(`Navigate to hotel ID: ${hotelId}`);
   };
 
@@ -76,13 +71,6 @@ const RecentlyVisitedHotels: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-      {/* 
-      <GenericSnackbar
-        open={false} // Set this as per your snackbar state
-        message="Success"
-        severity="success" // Adjust according to your use case
-        onClose={() => {}}
-      /> */}
     </div>
   );
 };

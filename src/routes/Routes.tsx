@@ -9,13 +9,8 @@ const AdminHome = lazy(() => import("../pages/Admin"));
 const Hotels = lazy(() => import("../pages/Admin/component/Hotels"));
 const Rooms = lazy(() => import("../pages/Admin/component/Rooms"));
 const Login = lazy(() => import("../pages/Login"));
-const UserHome = lazy(() => import("../pages/User"));
-
-
 const AppLayout = lazy(() => import("../container/AppLayout"));
-
 const Hotel = lazy(() => import("../pages/User/component/Hotel"));
-
 const Home = lazy(() => import("../pages/User/component/Home"));
 const SearchPage = lazy(() => import("../pages/User/component/SearchPage"));
 const Confirmation = lazy(() => import("../pages/User/component/Confirmation"));
@@ -25,11 +20,10 @@ const AppRoutes: FC = () => {
   return (
     <Suspense fallback={<BlockUI isBlocked={true} />}>
       <Routes>
-        <Route path="login" element={<Login />} />
+        <Route path="" element={<Login />} />
 
         <Route element={<ProtectedRoute allowedRoles={[User]} />}>
-          <Route path="" element={<Home />} />
-          <Route path="userhome" element={<UserHome />} />
+          <Route path="home" element={<Home />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="hotel/:id" element={<Hotel />} />
           <Route path="order" element={<Order />} />

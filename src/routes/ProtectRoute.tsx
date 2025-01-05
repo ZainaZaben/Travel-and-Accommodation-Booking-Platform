@@ -11,7 +11,7 @@ const ProtectedRoute: FC<PropsWithChildren<ProtectedRouteProps>> = ({
   const { token, userType } = useAppSelector((state) => state.auth);
   const location = useLocation();
   if (!token)
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+    return <Navigate to="/" replace state={{ from: location.pathname }} />;
   if (!allowedRoles?.includes(userType)) return <BlockUI isBlocked />;
   return <Outlet />;
 };

@@ -28,10 +28,10 @@ body {
   background-color: rgba(5,151,191,255);
 }
 
-/* Responsive styles */
 @media (max-width: 900px) {
   .grid {
     display: block;
+    height: auto; 
   }
   .login-image {
     display: none;

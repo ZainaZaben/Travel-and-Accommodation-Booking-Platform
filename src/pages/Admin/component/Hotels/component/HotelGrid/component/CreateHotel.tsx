@@ -1,9 +1,9 @@
 import React from "react";
 import { ModalType, Search, types } from "@/pages/Admin/types";
 import useSWR from "swr";
-import { searchCity } from "../../../../CityGrid/api";
+import { searchCity } from "@/pages/Admin/component/CityGrid/api";
 import useCreateHotel from "./hook/useCreateHotel";
-import TransitionsModal from "../../CreateHotel/Modal";
+import TransitionsModal from "@/pages/Admin/component/Hotels/component/CreateHotel/Modal";
 
 const searchTerm: Search = { name: "", searchQuery: "" };
 interface modalProps {

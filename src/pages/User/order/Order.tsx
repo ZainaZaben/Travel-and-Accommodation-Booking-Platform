@@ -1,10 +1,4 @@
-import {
-  Alert,
-  Box,
-  Button,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Button, Container, Typography } from "@mui/material";
 import { useAppSelector } from "@/store";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "@/features/cartSlice";
@@ -12,7 +6,7 @@ import RoomList from "./component/ProductListItem/RoomList";
 import NavBar from "@/components/NavBar";
 import colors from "@/constant/colorConstants";
 import FormInformation from "./component/FormInformation";
-import './style.css';
+import "./style.css";
 import Footer from "@/components/Footer";
 
 const Order = () => {
@@ -21,17 +15,9 @@ const Order = () => {
   const handleRemove = (roomId: number) => {
     dispatch(removeFromCart({ roomId }));
   };
-  const dateValues = useAppSelector((state) => state.search.data);
-  const totalAmount = rooms.reduce((acc) => {
-    if (!dateValues?.checkInDate || !dateValues?.checkOutDate) return acc;
-    
-    const checkIn = new Date(dateValues.checkInDate);
-    const checkOut = new Date(dateValues.checkOutDate);
-    console.log(checkIn);
-    console.log(checkOut);
-    const daysBetween = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
-    console.log(acc + daysBetween);
-    return (acc + daysBetween) * rooms[0]?.price;
+  const totalAmount = rooms.reduce((accumulator, room) => {
+    const { quantity, price } = room;
+    return accumulator + quantity * price;
   }, 0);
 
   return (
@@ -45,7 +31,7 @@ const Order = () => {
             justifyContent: "space-between",
             alignItems: "flex-start",
             width: "100%",
-            gap: "2rem", 
+            gap: "2rem",
           }}
           mt={3}
         >
@@ -79,12 +65,12 @@ const Order = () => {
             sx={{
               flex: 1,
               borderLeft: {
-                xs: "none", 
-                sm: "1px solid #ddd", 
+                xs: "none",
+                sm: "1px solid #ddd",
               },
               paddingLeft: {
-                xs: "0", 
-                sm: "2rem", 
+                xs: "0",
+                sm: "2rem",
               },
             }}
           >

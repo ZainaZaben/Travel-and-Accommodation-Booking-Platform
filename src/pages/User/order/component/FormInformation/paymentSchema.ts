@@ -46,7 +46,9 @@ export const validationSchema = yup.object().shape({
       (value: Array<string>, schema: yup.StringSchema) => {
         return value.includes("Cash")
           ? schema.optional()
-          : schema.required("Please enter the card CVV").matches(/^[0-9]{3,4}$/, "CVV must be 3 or 4 digits");
+          : schema
+              .required("Please enter the card CVV")
+              .matches(/^[0-9]{3,4}$/, "CVV must be 3 or 4 digits");
       }
     ),
   notes: yup.string(),

@@ -24,13 +24,11 @@ const PictureGallery: React.FC<PictureProps> = ({ id }) => {
             overflow: "hidden",
           }}
           cols={3}
-          gap={8} 
+          gap={8}
         >
           {data.map((item, indx) =>
             indx === 0 ? null : (
-              <ImageListItem
-                key={indx}
-              >
+              <ImageListItem key={indx}>
                 <img
                   src={item.url}
                   alt={`Image ${indx}`}
@@ -38,7 +36,7 @@ const PictureGallery: React.FC<PictureProps> = ({ id }) => {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    borderRadius: "4px", 
+                    borderRadius: "4px",
                   }}
                   loading="lazy"
                 />

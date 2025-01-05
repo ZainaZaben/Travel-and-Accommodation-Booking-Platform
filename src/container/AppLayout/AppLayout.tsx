@@ -11,25 +11,10 @@ import Drawer from "../Drawer";
 import DrawerHeader from "../DrawerHeader";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { UserRole } from "../../constant/auth";
-import ManageSearchIcon from "@mui/icons-material/ManageSearch";
-import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
-import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
-import HotelIcon from "@mui/icons-material/Hotel";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import { data } from "./types";
-const userData: data[] = [
-  { icon: <ManageSearchIcon />, title: "Search Bar", route: "/" },
-  { icon: <OnlinePredictionIcon />, title: "Featured Deals", route: "/deals" },
-  { icon: <HotelIcon />, title: "Recently Hotels", route: "/hotels" },
-  {
-    icon: <AutoFixHighIcon />,
-    title: "Trending  Highlights",
-    route: "/hightlights",
-  },
-];
 const adminData: data[] = [
   {
     icon: <LocationCityIcon />,
@@ -50,9 +35,7 @@ const adminData: data[] = [
 
 const AppLayout: React.FC = () => {
   const { open } = useAppSelector((state) => state.open);
-  const { userType, token } = useAppSelector((state) => state.auth);
-  const { Admin } = UserRole;
-  const data = userType === Admin ? adminData : userData;
+  const { token } = useAppSelector((state) => state.auth);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -60,8 +43,8 @@ const AppLayout: React.FC = () => {
       {token && (
         <Drawer variant="permanent" open={open}>
           <DrawerHeader />
-          <List>
-            {data.map((item, index) => (
+          <List sx={{ mt: 2 }}>
+            {adminData.map((item, index) => (
               <Link
                 to={item.route}
                 key={index}

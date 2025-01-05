@@ -16,11 +16,7 @@ const TrendingDestinations = () => {
       </h2>
       <Grid container spacing={2}>
         {trendingDestinations?.map((destination) => (
-          <Grid
-            item
-            key={destination.cityId}
-            xs={12} sm={6} md={4}
-          >
+          <Grid item key={destination.cityId} xs={12} sm={6} md={4}>
             <Destination destination={destination} />
           </Grid>
         ))}

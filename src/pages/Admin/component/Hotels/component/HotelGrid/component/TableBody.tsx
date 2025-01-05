@@ -65,7 +65,7 @@ const TableBody: React.FC<bodyProps> = ({ searchTerm, handleOpen }) => {
           </TableCell>
           <TableCell align="center">
             <IconButton
-              aria-label="delete"
+              aria-label="edit"
               size="large"
               color="warning"
               onClick={() => handleOpen(row)}

@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import StarRating from "@/components/StarRating";
-import { HotelType } from "@/pages/User/types"; 
+import { HotelType } from "@/pages/User/types";
 import React from "react";
 import colors from "@/constant/colorConstants";
 

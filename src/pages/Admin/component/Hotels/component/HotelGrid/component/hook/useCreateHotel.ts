@@ -1,10 +1,10 @@
 import { FormikHelpers, useFormik } from "formik";
-import { validationSchema } from "../../../CreateHotel/schema";
+import { validationSchema } from "@/pages/Admin/component/Hotels/component/CreateHotel/schema";
 import { useMutation } from "@tanstack/react-query";
 import useSnackbar from "@/hooks/useSnackbar";
 import { createHotel } from "../api";
-import { RequestBody } from "../../../CreateHotel/types";
-import { INITIAL_FORM_STATE } from "../../../CreateHotel/constant";
+import { RequestBody } from "@/pages/Admin/component/Hotels/component/CreateHotel/types";
+import { INITIAL_FORM_STATE } from "@/pages/Admin/component/Hotels/component/CreateHotel/constant";
 import useAdmin from "@/pages/Admin/context/useAdmin";
 const useCreateHotel = () => {
   const { showSnackbar } = useSnackbar();

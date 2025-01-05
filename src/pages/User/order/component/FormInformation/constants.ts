@@ -1,6 +1,6 @@
 import { Booking, PaymentMethod } from "./types";
 
-export const initialValues : Booking = {
+export const initialValues: Booking = {
   customerName: "",
   email: "",
   state: "",
@@ -13,7 +13,6 @@ export const initialValues : Booking = {
   CVV: "",
   notes: "",
 };
-
 
 export const paymentMethods: Array<PaymentMethod> = [
   {

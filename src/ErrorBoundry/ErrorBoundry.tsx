@@ -21,8 +21,8 @@ const ErrorBoundaryFC: FC<ErrorBoundaryFCProps> = (props) => {
     <ErrorBoundary
       FallbackComponent={UnexpectedError}
       onError={logErrorToService}
-      onReset={resetErrorBoundary} // reset the state of your app here
-      resetKeys={[someKey]} //when changed, will trigger a reset of the error boundary.
+      onReset={resetErrorBoundary}
+      resetKeys={[someKey]}
     >
       {children}
     </ErrorBoundary>

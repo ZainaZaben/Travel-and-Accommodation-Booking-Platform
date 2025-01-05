@@ -14,14 +14,13 @@ export interface Booking {
   state: string;
   city: string;
   paymentMethod: {
-    value: string,
-  },
+    value: string;
+  };
   cardNumber: string;
   expDate: string;
   CVV: string;
   notes: string;
 }
-
 
 export interface Confirmation {
   customerName: string;
@@ -29,6 +28,6 @@ export interface Confirmation {
   state: string;
   city: string;
   paymentMethod: {
-    value: string,
-  },
+    value: string;
+  };
 }

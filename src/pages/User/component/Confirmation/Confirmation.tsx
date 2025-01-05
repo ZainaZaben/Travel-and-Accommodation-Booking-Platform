@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 const Confirmation: React.FC = () => {
   const componentRef = useRef<HTMLDivElement>(null);
 
-
   return (
     <>
       <NavBar />

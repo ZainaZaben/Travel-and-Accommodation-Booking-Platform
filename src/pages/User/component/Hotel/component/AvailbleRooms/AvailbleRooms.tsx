@@ -7,7 +7,7 @@ import { roomType } from "./types";
 import useSnackbar from "@/hooks/useSnackbar";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cartSlice";
-import './styles.css'
+import "./styles.css";
 interface roomsProps {
   id: string | undefined;
 }

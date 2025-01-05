@@ -1,9 +1,8 @@
 import React from "react";
 import { ModalType, Search, types } from "@/pages/Admin/types";
 import useSWR from "swr";
-import { searchCity } from "../../../../CityGrid/api";
-
-import TransitionsModal from "../../CreateHotel/Modal";
+import { searchCity } from "@/pages/Admin/component/CityGrid/api";
+import SlidingWindowForm from "@/pages/Admin/component/Hotels/component/CreateHotel/Modal";
 import useUpdateHotel from "./hook/useUpdateHotel";
 const searchTerm: Search = { name: "", searchQuery: "" };
 interface modalProps {
@@ -15,7 +14,7 @@ const UpdateHotel: React.FC<modalProps> = ({ handleClose, open }) => {
   const { formik, isPending } = useUpdateHotel();
   return (
     <>
-      <TransitionsModal
+      <SlidingWindowForm
         data={data}
         isPending={isPending}
         formik={formik}
