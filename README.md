@@ -159,6 +159,7 @@ In this project, I've utilized the following libraries:
 ### 4. Hotel Page
 <img src="./src/assets/Readme-images/booking.jpg" alt="hotel page"/>
 <img src="./src/assets/Readme-images/booking2.jpg" alt="hotel page"/>
+
 #### 4.1 Visual Gallery
 
 - Fullscreen viewable high-quality images of the hotel.
