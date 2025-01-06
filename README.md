@@ -190,34 +190,34 @@ In this project, I've utilized the following libraries:
 
 - Booking details with confirmation number and download confirmation details as pdf option.
 
-### 6. Admin Page for Easy Management
+### 7. Admin Page for Easy Management
 <img src="./src/assets/Readme-images/admin1.jpg" alt="admin page"/>
 <img src="./src/assets/Readme-images/admin2.jpg" alt="admin page"/>
 <img src="./src/assets/Readme-images/admin3.jpg" alt="admin page"/>
 <img src="./src/assets/Readme-images/admin4.jpg" alt="admin page"/>
 
-#### 6.1 Functional Left Navigation
+#### 7.1 Functional Left Navigation
 
 - Navigator with links to Cities, Hotels, and Rooms.
 
-#### 6.2 Admin Search Bar
+#### 7.2 Admin Search Bar
 
 - Filters for the grids.
 
-#### 6.3 Detailed Grids
+#### 7.3 Detailed Grids
 
 - Detailed information and management options for Cities, Hotels, and Rooms.
 
-#### 6.4 Create Button
+#### 7.4 Create Button
 
 - Form for creating new entities like Cities, Hotels, or Rooms.
 
-#### 6.5 Entity Update Form
+#### 7.5 Entity Update Form
 <img src="./src/assets/Readme-images/update.jpg" alt="updating sliding window"/>
 
 - Forms for updating information on entities within the platform.
 
-### 6. Page Not Found
+### 8. Page Not Found
 <img src="./src/assets/Readme-images/notFound.jpg" alt="Not Found page"/>
 
 - This page is displayed whenever a user navigates to a URL that does not correspond to any active route within the application.
@@ -276,6 +276,7 @@ If you have any questions or want to reach out, feel free to connect with me:
 ## 💖 Acknowledgement
 
 I express my deepest gratitude to **Foothill Technology Solutions** for providing me with the opportunity to participate in this internship cycle. Their steadfast support has been pivotal in the successful development of this project.
+
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/62269745/174906065-7bb63e14-879a-4740-849c-0821697aeec2.png#gh-light-mode-only" width="40%">
