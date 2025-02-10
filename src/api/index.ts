@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../features/authSlice";
 const axiosInstance = axios.create({
   baseURL:
-    "https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net/api",
+    "https://hotel.foothilltech.net/api",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
